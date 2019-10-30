@@ -5,8 +5,12 @@ import { CanchasComponent } from './reservas/canchas/canchas.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'canchas',
     component: CanchasComponent
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(a => a.AuthModule)
   }
 ];
 

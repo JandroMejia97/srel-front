@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CANCHAS } from 'src/app/data/mock-canchas';
 import { MatTableDataSource } from '@angular/material';
+import { CanchaService } from 'src/app/services/cancha.service';
+import { Cancha } from 'src/app/models/cancha';
 
 @Component({
   selector: 'app-canchas-list',
@@ -16,15 +17,24 @@ export class CanchasListComponent implements OnInit {
     'tieneIluminacion',
     'tieneCespedSintetico'
   ];
-  public canchas = new MatTableDataSource(CANCHAS);
+  public canchas: Cancha[];
+  public tabla = new MatTableDataSource(this.canchas);
 
-
-  constructor() {console.log(this.canchas)}
+  constructor(
+    private canchaService: CanchaService
+  ) {}
 
   ngOnInit() {
+    this.getCanchas();
+  }
+
+  getCanchas(): void {
+    this.canchaService.getCanchas().subscribe(
+    canchas => this.canchas = canchas
+    );
   }
 
   aplicarFiltro(valor: string) {
-    this.canchas.filter = valor.trim().toLowerCase();
+    this.tabla.filter = valor.trim().toLowerCase();
   }
 }

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { ReservasModule } from './reservas/reservas.module';
 import { BooleanStringPipe } from './pipe/boolean-string.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BooleanStringPipe } from './pipe/boolean-string.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     CoreModule,
     ReservasModule
