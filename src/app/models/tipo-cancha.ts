@@ -1,4 +1,6 @@
 export class TipoCancha {
-  id: number;
-  tipoCancha: string;
+  constructor(
+    public id: number,
+    public tipoCancha: string
+  ) {}
 }

@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+    padding: 20px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-transform: uppercase;
+}

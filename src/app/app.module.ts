@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+import { ReservasModule } from './reservas/reservas.module';
+import { BooleanStringPipe } from './pipe/boolean-string.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BooleanStringPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    ReservasModule
   ],
   providers: [],
   bootstrap: [AppComponent]

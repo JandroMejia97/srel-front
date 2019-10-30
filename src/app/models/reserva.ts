@@ -2,10 +2,12 @@ import { Cancha } from './cancha';
 import { User } from './user';
 
 export class Reserva {
-  id: number;
-  cliente: string;
-  cancha: Cancha;
-  fechaTurno: Date;
-  fechaReserva: Date;
-  empleado: User;
+  constructor(
+  public id: number,
+  public cliente: string,
+  public cancha: Cancha,
+  public fechaTurno: Date,
+  public fechaReserva: Date,
+  public empleado: User
+  ) {}
 }
