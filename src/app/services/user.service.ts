@@ -9,7 +9,7 @@ import { MensajeService } from './mensaje.service';
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = 'https://localhost:8000/api/auth';
+  private userUrl = 'http://localhost:8000/api/auth';
   private httpOptions = {
     headers: new HttpHeaders({'Content-type': 'application/json'})
   };

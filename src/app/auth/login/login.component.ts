@@ -14,30 +14,17 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router
   ) {
-    this.form = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
   }
 
   ngOnInit() {
   }
 
   login() {
-    const dato = this.form.value;
-    if (dato.username && dato.password) {
-      this.user.username = dato.username;
-      this.user.password = dato.password;
-      this.userService.login(this.user).subscribe(
-        () => {
-            console.log('User is logged in');
-            this.router.navigateByUrl('');
-        }
-    );
+    if ((this.user.username !== '') && (this.user.password !== '')) {
+      this.userService.login(this.user).subscribe();
     }
   }
 }
