@@ -6,6 +6,7 @@ import { MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/mater
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
+import { AuthorizatedGuard } from '../services/auth-guard';
 
 
 @NgModule({
@@ -20,6 +21,9 @@ import { ToolBarComponent } from './tool-bar/tool-bar.component';
   ],
   exports: [
     ToolBarComponent
+  ],
+  providers: [
+    AuthorizatedGuard
   ]
 })
 export class CoreModule { }

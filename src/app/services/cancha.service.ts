@@ -37,7 +37,7 @@ export class CanchaService {
   }
 
   updateCancha(cancha: Cancha): Observable<any> {
-    return this.http.put(this.canchasUrl, cancha, this.httpOptions)
+    return this.http.put(`${this.canchasUrl}/canchas/`, cancha, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
       catchError(this.handleError<any>(`updateCancha(id=${cancha.id}, name: ${cancha.nombre})`))
@@ -45,7 +45,7 @@ export class CanchaService {
   }
 
   addCancha(cancha: Cancha): Observable<any> {
-    return this.http.post(this.canchasUrl, cancha, this.httpOptions)
+    return this.http.post(`${this.canchasUrl}/canchas/`, cancha, this.httpOptions)
     .pipe(
       tap(_ => this.log('Cancha guardada exitosamente')),
       catchError(this.handleError<Cancha>('addCancha()'))
@@ -63,7 +63,7 @@ export class CanchaService {
   }
 
   private log(mensaje: string){
-    this.mensajeService.add(`HeroService: ${ mensaje }`)
+    this.mensajeService.openSnackBar(`${ mensaje }`);
   }
 
   handleError<T>(operacion: string = 'operacion()', resultado?: T) {

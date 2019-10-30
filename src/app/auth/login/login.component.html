@@ -1,20 +1,21 @@
-<div fxLayout="row" fxLayoutAlign="center center">
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title>Iniciar Sesion</mat-card-title>
     </mat-card-header>
-    <form>
-      <mat-card-content>
+    <mat-card-content>
+      <form id="login-form" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
         <mat-form-field>
-          <input matInput placeholder="Nombre de usuario" [(ngModel)]="user.username" name="username" required>
+          <input matInput placeholder="Nombre de usuario" formControlName="username" type="text">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Contraseña" [(ngModel)]="user.password" type="password" name="password" required>
+          <input matInput placeholder="Contraseña" formControlName="password" type="password" required>
         </mat-form-field>
-      </mat-card-content>
-    </form>
+      </form>
+    </mat-card-content>
     <mat-card-actions fxLayoutAlign="center center">
-      <button mat-raised-button color="primary" (click)="login()" >Login</button>
+      <button mat-raised-button color="primary" form="login-form" >Iniciar Sesión</button>
+      <a routerLink="/auth/register" routerLinkActive="router-link-active"  mat-raised-button color="secondary" >Regístrate</a>
     </mat-card-actions>
   </mat-card>
 </div>

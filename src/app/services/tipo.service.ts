@@ -40,7 +40,7 @@ export class TipoCanchaService {
     return this.http.put(this.tipoCanchasUrl, tipoCancha, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
-      catchError(this.handleError<any>(`updateTipoCancha(id=${tipoCancha.id}, name: ${tipoCancha.nombre})`))
+      catchError(this.handleError<any>(`updateTipoCancha(id=${tipoCancha.id}, name: ${tipoCancha.tipoCancha})`))
     );
   }
 
@@ -63,7 +63,7 @@ export class TipoCanchaService {
   }
 
   private log(mensaje: string){
-    this.mensajeService.add(`HeroService: ${ mensaje }`)
+    this.mensajeService.openSnackBar(`${ mensaje }`, 'Cerrar');
   }
 
   handleError<T>(operacion: string = 'operacion()', resultado?: T) {

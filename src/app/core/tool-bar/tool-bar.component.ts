@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -9,7 +10,7 @@ export class ToolBarComponent implements OnInit {
   @Input()
   title: string;
 
-  constructor() { }
+  constructor(public storageService: StorageService) { }
 
   ngOnInit() {
   }

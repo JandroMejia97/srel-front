@@ -1,0 +1,17 @@
+span {
+  align-items: center;
+}
+a {
+  color: white;
+  size: 15px;
+  margin-left: 15px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mat-icon {
+  margin-right: 5px;
+  align-self: center;
+  transform: scale(1.25) !important;
+}

@@ -40,7 +40,7 @@ export class ReservaService {
     return this.http.put(this.reservasUrl, reserva, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
-      catchError(this.handleError<any>(`updateReserva(id=${reserva.id}, name: ${reserva.nombre})`))
+      catchError(this.handleError<any>(`updateReserva(id=${reserva.id}, fecha: ${reserva.fechaReserva})`))
     );
   }
 
@@ -63,7 +63,7 @@ export class ReservaService {
   }
 
   private log(mensaje: string){
-    this.mensajeService.add(`HeroService: ${ mensaje }`)
+    this.mensajeService.openSnackBar(`${ mensaje }`);
   }
 
   handleError<T>(operacion: string = 'operacion()', resultado?: T) {

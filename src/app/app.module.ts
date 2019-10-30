@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { ReservasModule } from './reservas/reservas.module';
 import { BooleanStringPipe } from './pipe/boolean-string.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -19,10 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
     CoreModule,
     ReservasModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

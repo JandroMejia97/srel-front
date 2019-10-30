@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CanchasComponent } from './reservas/canchas/canchas.component';
+import { AuthorizatedGuard } from './services/auth-guard';
 
 
 const routes: Routes = [
   {
     path: 'canchas',
-    component: CanchasComponent
+    canActivate: [ AuthorizatedGuard ],
+    loadChildren: () => import('./reservas/reservas.module').then(r => r.ReservasModule)
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(a => a.AuthModule)
-  }
+  },
+  {
+    path: '',
+    redirectTo: 'canchas',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
