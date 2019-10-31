@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Cancha } from '../models/cancha';
 import { MensajeService } from './mensaje.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,22 @@ import { MensajeService } from './mensaje.service';
 export class CanchaService {
   private canchasUrl = 'http://localhost:8000';
   private httpOptions = {
-    headers: new HttpHeaders({'Content-type': 'application/json'})
+    headers: new HttpHeaders({
+      'Content-type': 'application/json',
+      Authorization: `token ${this.storageService.getCurrentToken()}`
+    })
   };
 
   constructor(
     private http: HttpClient,
-    private mensajeService: MensajeService
+    private mensajeService: MensajeService,
+    private storageService: StorageService
   ) { }
 
   getCanchas(): Observable<Cancha[]> {
     return this.http.get<Cancha[]>(
-      `${this.canchasUrl}/canchas/`
+      `${this.canchasUrl}/canchas/`,
+      this.httpOptions
     ).pipe(
       tap(_ => this.log('Datos recuperados exitosamente')),
       catchError(this.handleError('getCanchas()', []))
@@ -30,7 +36,7 @@ export class CanchaService {
 
   getCancha(id: number): Observable<Cancha> {
     const url = `${this.canchasUrl}/canchas/${id}`;
-    return this.http.get<Cancha>(url).pipe(
+    return this.http.get<Cancha>(url, this.httpOptions).pipe(
         tap(_ => this.log('Datos recuperados exitosamente')),
         catchError(this.handleError<Cancha>(`getCancha(id=${id})`))
       );
@@ -68,7 +74,15 @@ export class CanchaService {
 
   handleError<T>(operacion: string = 'operacion()', resultado?: T) {
     return (error: any): Observable<T> => {
-      this.log(`${operacion} fallida: ${error.message}`);
+      if (error.error) {
+        let errorMessage = '';
+        for (const key in error.error) {
+          if (error.error.hasOwnProperty(key)) {
+            errorMessage += (key).toUpperCase() + ': ' + error.error[key];
+          }
+        }
+        this.log(`${errorMessage}`);
+      }
       return of(resultado as T);
     };
   }

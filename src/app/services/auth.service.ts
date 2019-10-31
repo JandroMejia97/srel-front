@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MensajeService } from './mensaje.service';
 import { Observable, of } from 'rxjs';
-import { tap, catchError, map } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { tap, catchError } from 'rxjs/operators';
 import { LoginObject } from '../models/login-object';
 import { Session } from '../models/session';
 
@@ -20,7 +19,6 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private mensajeService: MensajeService,
-    private router: Router
   ) { }
 
   login(user: LoginObject): Observable<Session> {

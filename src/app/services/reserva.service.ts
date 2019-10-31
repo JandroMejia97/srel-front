@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Reserva } from '../models/reserva';
 import { MensajeService } from './mensaje.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,32 @@ import { MensajeService } from './mensaje.service';
 export class ReservaService {
   private reservasUrl = 'http://localhost:8000';
   private httpOptions = {
-    headers: new HttpHeaders({'Content-type': 'application/json'})
+    headers: new HttpHeaders({
+      'Content-type': 'application/json',
+      Authorization: `token ${this.storageService.getCurrentToken()}`
+    })
   };
 
   constructor(
     private http: HttpClient,
-    private mensajeService: MensajeService
+    private mensajeService: MensajeService,
+    private storageService: StorageService
   ) { }
+
+  getReservasFiltered(idCancha: number): Observable<Reserva[]> {
+    return this.http.get<Reserva[]>(
+      `${this.reservasUrl}/reservas?cancha=${idCancha}`,
+      this.httpOptions
+    ).pipe(
+      tap(_ => this.log('Datos recuperados exitosamente')),
+      catchError(this.handleError('getReservas()', []))
+    );
+  }
 
   getReservas(): Observable<Reserva[]> {
     return this.http.get<Reserva[]>(
-      `${this.reservasUrl}/reservas/`
+      `${this.reservasUrl}/reservas/`,
+      this.httpOptions
     ).pipe(
       tap(_ => this.log('Datos recuperados exitosamente')),
       catchError(this.handleError('getReservas()', []))
@@ -30,7 +46,7 @@ export class ReservaService {
 
   getReserva(id: number): Observable<Reserva> {
     const url = `${this.reservasUrl}/reservas/${id}`;
-    return this.http.get<Reserva>(url).pipe(
+    return this.http.get<Reserva>(url, this.httpOptions).pipe(
         tap(_ => this.log('Datos recuperados exitosamente')),
         catchError(this.handleError<Reserva>(`getReserva(id=${id})`))
       );
@@ -62,7 +78,7 @@ export class ReservaService {
     );
   }
 
-  private log(mensaje: string){
+  private log(mensaje: string) {
     this.mensajeService.openSnackBar(`${ mensaje }`);
   }
 

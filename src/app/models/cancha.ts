@@ -4,10 +4,10 @@ export class Cancha {
   constructor(
     public id: number,
     public nombre: string,
-    public codInterno: string,
-    public tieneVestuario: boolean,
-    public tieneIluminacion: boolean,
-    public tieneCespedSintetico: boolean,
+    public cod_interno: string,
+    public tiene_vestuario: boolean,
+    public tiene_iluminacion: boolean,
+    public tiene_cesped_sintetico: boolean,
     public tipo: TipoCancha
   ) {}
 
