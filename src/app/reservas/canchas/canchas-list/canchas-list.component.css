@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    padding: 20px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-transform: uppercase;
+}
+th {
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center !important;
+}
+td, th {
+  text-align: center;
+  align-items: center;
+}
+td button {
+  width: 36px;
+  padding: 0;
+}
