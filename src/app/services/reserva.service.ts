@@ -56,7 +56,7 @@ export class ReservaService {
     return this.http.put(this.reservasUrl, reserva, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
-      catchError(this.handleError<any>(`updateReserva(id=${reserva.id}, fecha: ${reserva.fechaReserva})`))
+      catchError(this.handleError<any>(`updateReserva(id=${reserva.id}, fecha: ${reserva.fecha_reserva})`))
     );
   }
 
