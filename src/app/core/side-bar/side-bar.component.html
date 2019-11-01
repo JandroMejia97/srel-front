@@ -10,12 +10,8 @@
         Reservas
       </a>
       <a mat-bottom mat-list-item routerLink="/auth" *ngIf="!storageService.isAuthenticated()">
-        <mat-icon>first_page</mat-icon>
-        Iniciar Sesión
-      </a>
-      <a mat-bottom mat-list-item routerLink="/auth" *ngIf="!storageService.isAuthenticated()">
         <mat-icon>supervised_user_circle</mat-icon>
-        Registrarme
+        Iniciar Sesión
       </a>
       <a mat-bottom mat-list-item (click)="logout()" *ngIf="storageService.isAuthenticated()">
         <mat-icon>last_page</mat-icon>

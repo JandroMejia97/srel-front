@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
   ) {
   }
 
@@ -29,6 +29,7 @@ export class AuthComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    console.log(this.form);
   }
 
   submitLogin(): void {
@@ -48,14 +49,14 @@ export class AuthComponent implements OnInit {
     if (this.form.valid) {
       this.authService.register(new LoginObject(this.form.value))
       .subscribe(
-        data => this.correctLogin(data),
+        data => this.submitLogin(),
         error => this.error = JSON.parse(error._body));
     }
   }
 
   private correctLogin(data: Session) {
     this.storageService.setCurrentSession(data);
+    this.router.navigate(['canchas']);
   }
-
 
 }

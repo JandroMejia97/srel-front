@@ -13,7 +13,7 @@ export class AuthorizatedGuard implements CanActivate {
     if (this.storageService.isAuthenticated()) {
       return true;
     }
-    this.router.navigate(['auth/login']);
+    this.router.navigate(['auth']);
     return false;
   }
 }
