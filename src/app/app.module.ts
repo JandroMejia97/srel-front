@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material';
 import { AuthService } from './services/auth.service';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
     BooleanStringPipe
   ],
   imports: [
+    AuthModule,
     CoreModule,
     SharedModule,
     BrowserModule,
