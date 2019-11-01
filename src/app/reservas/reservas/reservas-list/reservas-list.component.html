@@ -16,7 +16,7 @@
     <td mat-cell *matCellDef="let elemento">
       <a [routerLink]="['reservas', elemento.id]"
       routerLinkActive="router-link-active">
-        {{ elemento.fecha_turno | date: 'short' }}
+        {{ elemento.fecha_turno | date: 'shortDate' }} {{ elemento.hora_turno }}
       </a>
     </td>
   </ng-container>

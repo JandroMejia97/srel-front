@@ -9,11 +9,11 @@
         <mat-icon>bookmark</mat-icon>
         Reservas
       </a>
-      <a mat-bottom mat-list-item routerLink="/auth/login" *ngIf="!storageService.isAuthenticated()">
+      <a mat-bottom mat-list-item routerLink="/auth" *ngIf="!storageService.isAuthenticated()">
         <mat-icon>first_page</mat-icon>
         Iniciar Sesión
       </a>
-      <a mat-bottom mat-list-item routerLink="/auth/register" *ngIf="!storageService.isAuthenticated()">
+      <a mat-bottom mat-list-item routerLink="/auth" *ngIf="!storageService.isAuthenticated()">
         <mat-icon>supervised_user_circle</mat-icon>
         Registrarme
       </a>
