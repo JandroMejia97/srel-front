@@ -1,26 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CoreRoutingModule } from './core-routing.module';
-import { MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import { AuthorizatedGuard } from '../services/auth-guard';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
-  declarations: [ToolBarComponent],
+  declarations: [ToolBarComponent, SideBarComponent],
   imports: [
     CommonModule,
-    CoreRoutingModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
     FlexLayoutModule,
     MatToolbarModule,
-    MatIconModule,
-    MatButtonModule
+    MatSidenavModule,
+    AppRoutingModule
   ],
   exports: [
-    ToolBarComponent
+    ToolBarComponent,
+    SideBarComponent
   ],
   providers: [
     AuthorizatedGuard

@@ -1,4 +1,6 @@
-<app-tool-bar [title]="title"></app-tool-bar>
-<div class="basic-container">
-  <router-outlet></router-outlet>
-</div>
+<app-tool-bar
+  [title]="title"
+  [openedSideBar]="openedSideBar"
+  (toggle)="onToggle($event)"></app-tool-bar>
+<app-side-bar
+  [openedSideBar]="openedSideBar"></app-side-bar>

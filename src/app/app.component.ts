@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Sistema de Reservas';
+  public openedSideBar: boolean = false;
+
+  onToggle(shouldOpen: boolean) {
+    this.openedSideBar = shouldOpen;
+  }
 }

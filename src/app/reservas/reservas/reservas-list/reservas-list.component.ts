@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { Reserva } from 'src/app/models/reserva';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { ReservaDetailComponent } from '../reserva-detail/reserva-detail.component';
 
 @Component({
   selector: 'app-reservas-list',
@@ -10,18 +11,21 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class ReservasListComponent implements OnInit {
   columnasMostradas: string[] = [
-    'id',
     'fecha_turno',
     'fecha_reserva',
     'cliente',
     'acciones'
   ];
-  public reservas: Reserva[];
-  public tabla;
+  public reserva: Reserva;
+  public dataSource = new MatTableDataSource<Reserva>([]);
+  public cantItems = 25;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @Input() idCancha: number;
 
   constructor(
-    private reservaService: ReservaService
+    private reservaService: ReservaService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -30,24 +34,56 @@ export class ReservasListComponent implements OnInit {
     } else {
       this.getReservas();
     }
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   getReservas(): void {
-    this.reservaService.getReservas().subscribe(reservas => {
-      if (reservas.hasOwnProperty('results') ) {
-        this.reservas = reservas['results'];
-      }
-      this.tabla = new MatTableDataSource(this.reservas);
+    this.reservaService.getReservas().subscribe((reservas: any) => {
+      const data = this.dataSource.data;
+      reservas.results.forEach(reserva => {
+        data.push(reserva);
+      });
+      this.dataSource.data = data;
+    });
+  }
+
+  getReservasPageSize(): void {
+    this.reservaService.getReservas(this.cantItems).subscribe((reservas: any) => {
+      this.dataSource.data = reservas.results;
     });
   }
 
   getReservasFiltered(idCancha: number): void {
-    this.reservaService.getReservasFiltered(idCancha).subscribe(reservas => {
-      if (reservas.hasOwnProperty('results') ) {
-        this.reservas = reservas['results'];
-      }
-      this.tabla = new MatTableDataSource(this.reservas);
+    this.reservaService.getReservasFiltered(idCancha).subscribe((reservas: any) => {
+      const data = this.dataSource.data;
+      reservas.results.forEach(reserva => {
+        data.push(reserva);
+      });
+      this.dataSource.data = data;
     });
   }
 
+  getReserva(id: number): void {
+    this.reservaService.getReserva(id).subscribe(reserva => {
+      this.reserva = reserva;
+      this.openDialog();
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ReservaDetailComponent, {
+      height: '45vh',
+      minWidth: '50%',
+      data: {reserva: this.reserva}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

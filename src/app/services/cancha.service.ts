@@ -24,9 +24,9 @@ export class CanchaService {
     private storageService: StorageService
   ) { }
 
-  getCanchas(): Observable<Cancha[]> {
+  getCanchas(pageSize: number = 25): Observable<Cancha[]> {
     return this.http.get<Cancha[]>(
-      `${this.canchasUrl}/canchas/`,
+      `${this.canchasUrl}/canchas?page_size=${pageSize}`,
       this.httpOptions
     ).pipe(
       tap(_ => this.log('Datos recuperados exitosamente')),

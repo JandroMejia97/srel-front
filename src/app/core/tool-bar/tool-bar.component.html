@@ -1,17 +1,27 @@
 <mat-toolbar fxFlex fxLayout fxLayoutAlign="0 center" color="primary" class="mat-elevation-z6" *ngIf="storageService.isAuthenticated()">
+  <button
+    mat-icon-button
+    (click)="toggle.emit(!openedSideBar)"
+    fxHide.gt-sm="TRUE">
+      <mat-icon class="icon">menu</mat-icon>
+  </button>
   <span class="brand">
     {{title}}
   </span>
-  <span fxFlex fxLayout fxLayoutAlign="flex-end center">
-    <a mat-bottom routerLink="canchas">
+  <span fxFlex fxLayout fxLayoutAlign="flex-end center" fxHide.lt-md="TRUE">
+    <a mat-bottom routerLink="/canchas">
       <mat-icon>sports_soccer</mat-icon>
       Canchas
+    </a>
+    <a mat-bottom routerLink="/reservas">
+      <mat-icon>bookmark</mat-icon>
+      Reservas
     </a>
     <a mat-bottom routerLink="/auth/login" *ngIf="!storageService.isAuthenticated()">
       <mat-icon>first_page</mat-icon>
       Iniciar Sesión
     </a>
-    <a mat-bottom (click)="storageService.removeCurrentSession()" *ngIf="storageService.isAuthenticated()">
+    <a mat-bottom (click)="logout()" *ngIf="storageService.isAuthenticated()">
       <mat-icon>last_page</mat-icon>
       Cerrar Sesión
     </a>

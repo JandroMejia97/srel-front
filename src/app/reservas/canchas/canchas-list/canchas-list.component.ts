@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatDialog, MatPaginator } from '@angular/material';
+import { MatSort } from '@angular/material/sort'
 import { CanchaService } from 'src/app/services/cancha.service';
 import { Cancha } from 'src/app/models/cancha';
 import { CanchaDetailComponent } from '../cancha-detail/cancha-detail.component';
@@ -11,7 +12,6 @@ import { CanchaDetailComponent } from '../cancha-detail/cancha-detail.component'
 })
 export class CanchasListComponent implements OnInit {
   columnasMostradas: string[] = [
-    'id',
     'nombre',
     'tipo',
     'tiene_vestuario',
@@ -19,10 +19,12 @@ export class CanchasListComponent implements OnInit {
     'tiene_cesped_sintetico',
     'acciones'
   ];
-  public canchas: Cancha[];
   public cancha: Cancha;
   public dialogActions: string;
-  public tabla;
+  public dataSource = new MatTableDataSource<Cancha>([]);
+  public cantItems = 25;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
     private canchaService: CanchaService,
@@ -31,28 +33,31 @@ export class CanchasListComponent implements OnInit {
 
   ngOnInit() {
     this.getCanchas();
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   getCanchas(): void {
-    this.canchaService.getCanchas().subscribe(canchas => {
-      if (canchas.hasOwnProperty('results')) {
-        this.canchas = canchas['results'];
-      }
-      this.tabla = new MatTableDataSource(this.canchas);
+    this.canchaService.getCanchas(this.cantItems).subscribe((canchas: any) => {
+      this.dataSource.data = canchas.results;
     });
   }
 
   getCancha(id: number): void {
     this.canchaService.getCancha(id).subscribe(cancha => {
       this.cancha = cancha;
-      this.openDialog();
+      this.openDetailDialog();
     });
   }
 
-  openDialog() {
+  openDetailDialog() {
     const dialogRef = this.dialog.open(CanchaDetailComponent, {
       height: '90vh',
-      width: '50%',
+      minWidth: '50%',
       data: {cancha: this.cancha}
     });
 
@@ -62,6 +67,12 @@ export class CanchasListComponent implements OnInit {
   }
 
   aplicarFiltro(valor: string) {
-    this.tabla.filter = valor.trim().toLowerCase();
+    this.dataSource.filter = valor.trim().toLowerCase();
+  }
+
+  deleteCancha(cancha: Cancha) {
+    this.canchaService.deleteCancha(cancha.id).subscribe(
+
+    );
   }
 }

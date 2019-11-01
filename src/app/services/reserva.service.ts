@@ -34,9 +34,9 @@ export class ReservaService {
     );
   }
 
-  getReservas(): Observable<Reserva[]> {
+  getReservas(pageSize: number = 25): Observable<Reserva[]> {
     return this.http.get<Reserva[]>(
-      `${this.reservasUrl}/reservas/`,
+      `${this.reservasUrl}/reservas?page_size=${pageSize}`,
       this.httpOptions
     ).pipe(
       tap(_ => this.log('Datos recuperados exitosamente')),
