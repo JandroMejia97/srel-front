@@ -3,9 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "config": "ts-node ./src/config-env.ts",
-    "start": "npm run config -- && node server.js",
-    "heroku-postbuild": "npm run config -- && ng build --prod",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
