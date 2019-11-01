@@ -3,6 +3,7 @@ import { ReservaService } from 'src/app/services/reserva.service';
 import { Reserva } from 'src/app/models/reserva';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { ReservaDetailComponent } from '../reserva-detail/reserva-detail.component';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-reservas-list',
@@ -85,5 +86,25 @@ export class ReservasListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  openConfirmDialog(reserva: Reserva) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: `Eliminar: ${reserva.fecha_turno}`,
+        content: `¿Seguro que desea eliminar esta reserva?`,
+        icon: 'delete_forever',
+        color: 'warn'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteReserva(reserva);
+      }
+    });
+  }
+
+  deleteReserva(reserva: Reserva) {
+    this.reservaService.deleteReserva(reserva.id).subscribe(_ => this.getReservasPageSize());
   }
 }

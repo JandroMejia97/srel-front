@@ -29,7 +29,7 @@ export class CanchaService {
       `${this.canchasUrl}/canchas?page_size=${pageSize}`,
       this.httpOptions
     ).pipe(
-      tap(_ => this.log('Datos recuperados exitosamente')),
+      tap(_ => console.log('Datos recuperados exitosamente')),
       catchError(this.handleError('getCanchas()', []))
     );
   }
@@ -37,7 +37,7 @@ export class CanchaService {
   getCancha(id: number): Observable<Cancha> {
     const url = `${this.canchasUrl}/canchas/${id}`;
     return this.http.get<Cancha>(url, this.httpOptions).pipe(
-        tap(_ => this.log('Datos recuperados exitosamente')),
+        tap(_ => console.log('Datos recuperados exitosamente')),
         catchError(this.handleError<Cancha>(`getCancha(id=${id})`))
       );
   }

@@ -15,3 +15,7 @@ a {
   align-self: center;
   transform: scale(1.25) !important;
 }
+mat-toolbar {
+  position: fixed !important;
+  z-index: 10 !important;
+}

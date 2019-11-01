@@ -17,6 +17,9 @@ import { MatDialogModule, MatButtonModule, MatIconModule } from '@angular/materi
   ],
   exports: [
     ConfirmationDialogComponent
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ]
 })
 export class SharedModule { }

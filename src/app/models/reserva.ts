@@ -6,8 +6,8 @@ export class Reserva {
   public id: number,
   public cliente: string,
   public cancha: Cancha,
-  public fechaTurno: Date,
-  public fechaReserva: Date,
+  public fecha_turno: Date,
+  public fecha_reserva: Date,
   public empleado: User
   ) {}
 }

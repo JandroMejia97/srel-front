@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort'
 import { CanchaService } from 'src/app/services/cancha.service';
 import { Cancha } from 'src/app/models/cancha';
 import { CanchaDetailComponent } from '../cancha-detail/cancha-detail.component';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-canchas-list',
@@ -70,9 +71,23 @@ export class CanchasListComponent implements OnInit {
     this.dataSource.filter = valor.trim().toLowerCase();
   }
 
-  deleteCancha(cancha: Cancha) {
-    this.canchaService.deleteCancha(cancha.id).subscribe(
+  openConfirmDialog(cancha: Cancha) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: `Eliminar: ${cancha.nombre}`,
+        content: `¿Seguro que desea eliminar esta cancha?`,
+        icon: 'delete_forever',
+        color: 'warn'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteCancha(cancha);
+      }
+    });
+  }
 
-    );
+  deleteCancha(cancha: Cancha) {
+    this.canchaService.deleteCancha(cancha.id).subscribe(_ => this.getCanchas());
   }
 }

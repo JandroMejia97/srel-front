@@ -1,4 +1,10 @@
-<mat-toolbar fxFlex fxLayout fxLayoutAlign="0 center" color="primary" class="mat-elevation-z6" *ngIf="storageService.isAuthenticated()">
+<mat-toolbar
+  fxFlex
+  fxLayout
+  fxLayoutAlign="0 center"
+  color="primary"
+  fixedInViewport="true"
+  class="mat-elevation-z6">
   <button
     mat-icon-button
     (click)="toggle.emit(!openedSideBar)"
@@ -9,17 +15,21 @@
     {{title}}
   </span>
   <span fxFlex fxLayout fxLayoutAlign="flex-end center" fxHide.lt-md="TRUE">
-    <a mat-bottom routerLink="/canchas">
+    <a mat-bottom routerLink="/canchas" *ngIf="storageService.isAuthenticated()">
       <mat-icon>sports_soccer</mat-icon>
       Canchas
     </a>
-    <a mat-bottom routerLink="/reservas">
+    <a mat-bottom routerLink="/reservas" *ngIf="storageService.isAuthenticated()">
       <mat-icon>bookmark</mat-icon>
       Reservas
     </a>
     <a mat-bottom routerLink="/auth/login" *ngIf="!storageService.isAuthenticated()">
       <mat-icon>first_page</mat-icon>
       Iniciar Sesión
+    </a>
+    <a mat-bottom routerLink="/auth/register" *ngIf="!storageService.isAuthenticated()">
+      <mat-icon>supervised_user_circle</mat-icon>
+      Registrarme
     </a>
     <a mat-bottom (click)="logout()" *ngIf="storageService.isAuthenticated()">
       <mat-icon>last_page</mat-icon>

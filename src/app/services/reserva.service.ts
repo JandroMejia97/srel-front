@@ -29,7 +29,7 @@ export class ReservaService {
       `${this.reservasUrl}/reservas?cancha=${idCancha}`,
       this.httpOptions
     ).pipe(
-      tap(_ => this.log('Datos recuperados exitosamente')),
+      tap(_ => console.log('Datos recuperados exitosamente')),
       catchError(this.handleError('getReservas()', []))
     );
   }
@@ -39,7 +39,7 @@ export class ReservaService {
       `${this.reservasUrl}/reservas?page_size=${pageSize}`,
       this.httpOptions
     ).pipe(
-      tap(_ => this.log('Datos recuperados exitosamente')),
+      tap(_ => console.log('Datos recuperados exitosamente')),
       catchError(this.handleError('getReservas()', []))
     );
   }
@@ -47,7 +47,7 @@ export class ReservaService {
   getReserva(id: number): Observable<Reserva> {
     const url = `${this.reservasUrl}/reservas/${id}`;
     return this.http.get<Reserva>(url, this.httpOptions).pipe(
-        tap(_ => this.log('Datos recuperados exitosamente')),
+        tap(_ => console.log('Datos recuperados exitosamente')),
         catchError(this.handleError<Reserva>(`getReserva(id=${id})`))
       );
   }
