@@ -5,12 +5,13 @@ import { tap, catchError } from 'rxjs/operators';
 import { Cancha } from '../models/cancha';
 import { MensajeService } from './mensaje.service';
 import { StorageService } from './storage.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanchaService {
-  private canchasUrl = 'http://localhost:8000';
+  private canchasUrl = environment.apiUrl;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-type': 'application/json',

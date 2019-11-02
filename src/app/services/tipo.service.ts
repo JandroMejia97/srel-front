@@ -4,12 +4,13 @@ import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { TipoCancha } from '../models/tipo-cancha';
 import { MensajeService } from './mensaje.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipoCanchaService {
-  private tipoCanchasUrl = 'http://localhost:8000';
+  private tipoCanchasUrl = environment.apiUrl;
   private httpOptions = {
     headers: new HttpHeaders({'Content-type': 'application/json'})
   };

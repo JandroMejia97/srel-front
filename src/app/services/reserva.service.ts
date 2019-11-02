@@ -5,12 +5,13 @@ import { tap, catchError } from 'rxjs/operators';
 import { Reserva } from '../models/reserva';
 import { MensajeService } from './mensaje.service';
 import { StorageService } from './storage.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservaService {
-  private reservasUrl = 'http://localhost:8000';
+  private reservasUrl = environment.apiUrl;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-type': 'application/json',

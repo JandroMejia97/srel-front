@@ -8,13 +8,13 @@
     <b>Nombre </b>{{ data.cancha.nombre }}
   </p>
   <p>
-    <b>¿Tiene Vestuario? </b>{{ data.cancha.tiene_vestaurio }}
+    <b>¿Tiene Vestuario? </b>{{ data.cancha.tiene_vestuario ? 'Sí' : 'No' }}
   </p>
   <p>
-    <b>¿Tiene Iluminación? </b>{{ data.cancha.tiene_iluminacion }}
+    <b>¿Tiene Iluminación? </b>{{ data.cancha.tiene_iluminacion ? 'Sí' : 'No' }}
   </p>
   <p>
-    <b>¿Tiene Cesped Siténtico? </b>{{ data.cancha.tiene_cesped_sintetico }}
+    <b>¿Tiene Cesped Siténtico? </b>{{ data.cancha.tiene_cesped_sintetico ? 'Sí' : 'No' }}
   </p>
   <app-reservas-list [idCancha]="data.cancha.id"></app-reservas-list>
 </mat-dialog-content>

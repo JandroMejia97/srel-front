@@ -5,12 +5,13 @@ import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { LoginObject } from '../models/login-object';
 import { Session } from '../models/session';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private userUrl = 'http://localhost:8000';
+  private userUrl = environment.apiUrl;
   private httpOptions = {
     headers: new HttpHeaders({'Content-type': 'application/json'})
   };
