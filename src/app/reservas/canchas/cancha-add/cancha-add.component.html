@@ -5,21 +5,27 @@
     [formGroup]="form"
     novalidate
     fxLayout="column">
-    <mat-form-field>
+    <mat-form-field
+      matTooltip="Nombre"
+      matTooltipPosition="above">
       <input
         matInput
         placeholder="Nombre de la cancha. Ejemplo: La Diego Armando"
         formControlName="nombre"
         type="text">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field
+      matTooltip="Codigo interno"
+      matTooltipPosition="above">
       <input
         matInput
         placeholder="Codigo interno. Ejemplo: ful-AF321"
         formControlName="cod_interno"
         type="text">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field
+      matTooltip="Tipo de cancha"
+      matTooltipPosition="above">
       <mat-label>Tipo de Cancha</mat-label>
       <mat-select
         matInput
@@ -29,21 +35,46 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-checkbox formControlName="tiene_vestuario" [checked]="false">¿Tiene vestuario?</mat-checkbox>
-    <mat-checkbox formControlName="tiene_iluminacion" [checked]="false">¿Tiene iluminación?</mat-checkbox>
-    <mat-checkbox formControlName="tiene_cesped_sintetico" [checked]="false">¿Tiene cesped sintético?</mat-checkbox>
+    <mat-checkbox
+      aria-label="Marque esta opción si la cancha tiene vestuario"
+      formControlName="tiene_vestuario"
+      [checked]="false"
+      color="primary">
+        ¿Tiene vestuario?
+    </mat-checkbox>
+    <mat-checkbox
+      aria-label="Marque esta opción si la cancha tiene iluminación"
+      formControlName="tiene_iluminacion"
+      [checked]="false"
+      color="primary">
+        ¿Tiene iluminación?
+    </mat-checkbox>
+    <mat-checkbox
+      aria-label="Marque esta opción si la cancha posee césped sintético"
+      formControlName="tiene_cesped_sintetico"
+      [checked]="false"
+      color="primary">
+        ¿Tiene cesped sintético?
+    </mat-checkbox>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button
     mat-raised-button
     [mat-dialog-close]="form.value"
+    matTooltip="Guardar y cerrar"
+    matTooltipPosition="left"
     color="primary"
     [disabled]="form.invalid ? true: false">
     <mat-icon>save</mat-icon>
     Guardar
   </button>
-  <button mat-button mat-dialog-close (click)="onCancelar()">
+  <button
+    mat-button
+    mat-dialog-close
+    matTooltip="Cerrar"
+    matTooltipPosition="right"
+    (click)="onCancelar()">
     <mat-icon>clear</mat-icon>
     Cerrar
   </button>

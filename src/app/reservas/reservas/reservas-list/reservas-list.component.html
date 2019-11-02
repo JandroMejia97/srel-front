@@ -1,4 +1,14 @@
-<h1>Gestión de Reservas</h1>
+<h1>
+  Gestión de Reservas
+  <button
+    mat-mini-fab
+    color="primary"
+    matTooltip="Agregar"
+    aria-label="Añade una cancha"
+    (click)="openAddDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</h1>
 <div *ngIf="!idCancha" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="space-between">
   <mat-form-field fxFlex.gt-sm="40" fxFlex.lt-sm="80">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">

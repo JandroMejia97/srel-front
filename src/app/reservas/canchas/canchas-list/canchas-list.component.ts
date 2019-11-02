@@ -70,7 +70,6 @@ export class CanchasListComponent implements OnInit {
 
   openAddDialog() {
     const dialogRef = this.dialog.open(CanchaAddComponent, {
-      minHeight: '55vh',
       minWidth: '50%',
       data: {cancha: null, title: 'Añade una Cancha'}
     });
@@ -84,7 +83,6 @@ export class CanchasListComponent implements OnInit {
 
   openEditDialog(cancha: Cancha) {
     const dialogRef = this.dialog.open(CanchaAddComponent, {
-      minHeight: '55vh',
       minWidth: '50%',
       data: {cancha, title: 'Editando: ' + cancha.nombre}
     });

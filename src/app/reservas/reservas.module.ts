@@ -12,7 +12,8 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { CanchasListComponent } from './canchas/canchas-list/canchas-list.component';
@@ -48,6 +49,7 @@ import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.componen
     MatSelectModule,
     MatDialogModule,
     MatButtonModule,
+    MatTooltipModule,
     FlexLayoutModule,
     MatCheckboxModule,
     MatFormFieldModule,
