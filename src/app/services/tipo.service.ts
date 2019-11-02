@@ -5,6 +5,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { TipoCancha } from '../models/tipo-cancha';
 import { MensajeService } from './mensaje.service';
 import { environment } from 'src/environments/environment';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +13,32 @@ import { environment } from 'src/environments/environment';
 export class TipoCanchaService {
   private tipoCanchasUrl = environment.apiUrl;
   private httpOptions = {
-    headers: new HttpHeaders({'Content-type': 'application/json'})
+    headers: new HttpHeaders({
+      'Content-type': 'application/json',
+      Authorization: `token ${this.storageService.getCurrentToken()}`
+    })
   };
 
   constructor(
     private http: HttpClient,
-    private mensajeService: MensajeService
+    private mensajeService: MensajeService,
+    private storageService: StorageService
   ) { }
 
   getTipoCanchas(): Observable<TipoCancha[]> {
     return this.http.get<TipoCancha[]>(
-      `${this.tipoCanchasUrl}/tipos/`
+      `${this.tipoCanchasUrl}/tipos/`,
+      this.httpOptions
     ).pipe(
-      tap(_ => this.log('Datos recuperados exitosamente')),
+      tap(_ => console.log('Datos recuperados exitosamente')),
       catchError(this.handleError('getTipoCanchas()', []))
     );
   }
 
   getTipoCancha(id: number): Observable<TipoCancha> {
     const url = `${this.tipoCanchasUrl}/tipos/${id}`;
-    return this.http.get<TipoCancha>(url).pipe(
-        tap(_ => this.log('Datos recuperados exitosamente')),
+    return this.http.get<TipoCancha>(url, this.httpOptions).pipe(
+        tap(_ => console.log('Datos recuperados exitosamente')),
         catchError(this.handleError<TipoCancha>(`getTipoCancha(id=${id})`))
       );
   }
@@ -41,7 +47,7 @@ export class TipoCanchaService {
     return this.http.put(this.tipoCanchasUrl, tipoCancha, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
-      catchError(this.handleError<any>(`updateTipoCancha(id=${tipoCancha.id}, name: ${tipoCancha.tipoCancha})`))
+      catchError(this.handleError<any>(`updateTipoCancha(id=${tipoCancha.id}, name: ${tipoCancha.tipo_cancha})`))
     );
   }
 

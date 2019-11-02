@@ -5,7 +5,13 @@
   </mat-form-field>
   <mat-form-field fxFlex.gt-sm="40" fxFlex.lt-sm="80">
     <input matInput type="number" placeholder="Cantidad de Items" [(ngModel)]="cantItems">
-    <button mat-button *ngIf="cantItems" matSuffix mat-icon-button aria-label="Obtener items" (click)="getReservasPageSize()">
+    <button
+      mat-button
+      *ngIf="cantItems"
+      matSuffix
+      mat-icon-button
+      aria-label="Obtener items"
+      (click)="getReservas()">
       <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>

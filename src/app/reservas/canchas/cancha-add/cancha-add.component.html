@@ -1,1 +1,50 @@
-<p>cancha-add works!</p>
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content class="mat-typography">
+  <form
+    id="cancha-form"
+    [formGroup]="form"
+    novalidate
+    fxLayout="column">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Nombre de la cancha. Ejemplo: La Diego Armando"
+        formControlName="nombre"
+        type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Codigo interno. Ejemplo: ful-AF321"
+        formControlName="cod_interno"
+        type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tipo de Cancha</mat-label>
+      <mat-select
+        matInput
+        formControlName="tipo">
+        <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
+          {{ tipo.tipo_cancha }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-checkbox formControlName="tiene_vestuario" [checked]="false">¿Tiene vestuario?</mat-checkbox>
+    <mat-checkbox formControlName="tiene_iluminacion" [checked]="false">¿Tiene iluminación?</mat-checkbox>
+    <mat-checkbox formControlName="tiene_cesped_sintetico" [checked]="false">¿Tiene cesped sintético?</mat-checkbox>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button
+    mat-raised-button
+    [mat-dialog-close]="form.value"
+    color="primary"
+    [disabled]="form.invalid ? true: false">
+    <mat-icon>save</mat-icon>
+    Guardar
+  </button>
+  <button mat-button mat-dialog-close (click)="onCancelar()">
+    <mat-icon>clear</mat-icon>
+    Cerrar
+  </button>
+</mat-dialog-actions>

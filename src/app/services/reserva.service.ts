@@ -25,9 +25,15 @@ export class ReservaService {
     private storageService: StorageService
   ) { }
 
-  getReservasFiltered(idCancha: number): Observable<Reserva[]> {
+  getReservas(...criterios: any[]): Observable<Reserva[]> {
+    let filterParameters = '';
+    for (const key in criterios) {
+      if(criterios.hasOwnProperty(key)) {
+        filterParameters += `${key}=${criterios[key]}`;
+      }
+    }
     return this.http.get<Reserva[]>(
-      `${this.reservasUrl}/reservas?cancha=${idCancha}`,
+      `${this.reservasUrl}/reservas?${filterParameters}`,
       this.httpOptions
     ).pipe(
       tap(_ => console.log('Datos recuperados exitosamente')),
@@ -35,7 +41,7 @@ export class ReservaService {
     );
   }
 
-  getReservas(pageSize: number = 25): Observable<Reserva[]> {
+  /*getReservas(pageSize: number = 25): Observable<Reserva[]> {
     return this.http.get<Reserva[]>(
       `${this.reservasUrl}/reservas?page_size=${pageSize}`,
       this.httpOptions
@@ -43,7 +49,7 @@ export class ReservaService {
       tap(_ => console.log('Datos recuperados exitosamente')),
       catchError(this.handleError('getReservas()', []))
     );
-  }
+  }*/
 
   getReserva(id: number): Observable<Reserva> {
     const url = `${this.reservasUrl}/reservas/${id}`;

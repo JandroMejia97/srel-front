@@ -40,23 +40,13 @@ export class ReservasListComponent implements OnInit {
   }
 
   getReservas(): void {
-    this.reservaService.getReservas().subscribe((reservas: any) => {
-      const data = this.dataSource.data;
-      reservas.results.forEach(reserva => {
-        data.push(reserva);
-      });
-      this.dataSource.data = data;
-    });
-  }
-
-  getReservasPageSize(): void {
-    this.reservaService.getReservas(this.cantItems).subscribe((reservas: any) => {
+    this.reservaService.getReservas({page_size: 'page_size', cantItems: this.cantItems}).subscribe((reservas: any) => {
       this.dataSource.data = reservas.results;
     });
   }
 
   getReservasFiltered(idCancha: number): void {
-    this.reservaService.getReservasFiltered(idCancha).subscribe((reservas: any) => {
+    this.reservaService.getReservas({cancha: 'cancha', idCancha}).subscribe((reservas: any) => {
       const data = this.dataSource.data;
       reservas.results.forEach(reserva => {
         data.push(reserva);
@@ -105,6 +95,6 @@ export class ReservasListComponent implements OnInit {
   }
 
   deleteReserva(reserva: Reserva) {
-    this.reservaService.deleteReserva(reserva.id).subscribe(_ => this.getReservasPageSize());
+    this.reservaService.deleteReserva(reserva.id).subscribe(_ => this.getReservas());
   }
 }

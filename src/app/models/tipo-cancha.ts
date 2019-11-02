@@ -1,6 +1,6 @@
 export class TipoCancha {
   constructor(
     public id: number,
-    public tipoCancha: string
+    public tipo_cancha: string
   ) {}
 }

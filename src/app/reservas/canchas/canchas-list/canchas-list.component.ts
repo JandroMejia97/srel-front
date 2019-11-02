@@ -5,6 +5,7 @@ import { CanchaService } from 'src/app/services/cancha.service';
 import { Cancha } from 'src/app/models/cancha';
 import { CanchaDetailComponent } from '../cancha-detail/cancha-detail.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { CanchaAddComponent } from '../cancha-add/cancha-add.component';
 
 @Component({
   selector: 'app-canchas-list',
@@ -38,12 +39,8 @@ export class CanchasListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   getCanchas(): void {
-    this.canchaService.getCanchas(this.cantItems).subscribe((canchas: any) => {
+    this.canchaService.getCanchas({page_size: 'page_size', cantItems: this.cantItems}).subscribe((canchas: any) => {
       this.dataSource.data = canchas.results;
     });
   }
@@ -55,20 +52,62 @@ export class CanchasListComponent implements OnInit {
     });
   }
 
+  deleteCancha(cancha: Cancha) {
+    this.canchaService.deleteCancha(cancha.id).subscribe(_ => this.getCanchas());
+  }
+
+  addCancha(cancha: Cancha) {
+    this.canchaService.addCancha(cancha).subscribe(_ => this.getCanchas());
+  }
+
+  updateCancha(cancha: Cancha) {
+    this.canchaService.updateCancha(cancha).subscribe(_ => this.getCanchas());
+  }
+
+  aplicarFiltro(valor: string) {
+    this.dataSource.filter = valor.trim().toLowerCase();
+  }
+
+  openAddDialog() {
+    const dialogRef = this.dialog.open(CanchaAddComponent, {
+      minHeight: '55vh',
+      minWidth: '50%',
+      data: {cancha: null, title: 'Añade una Cancha'}
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.addCancha(result);
+      }
+    });
+  }
+
+  openEditDialog(cancha: Cancha) {
+    const dialogRef = this.dialog.open(CanchaAddComponent, {
+      minHeight: '55vh',
+      minWidth: '50%',
+      data: {cancha, title: 'Editando: ' + cancha.nombre}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateCancha(result);
+      }
+    });
+  }
+
   openDetailDialog() {
     const dialogRef = this.dialog.open(CanchaDetailComponent, {
-      height: '90vh',
+      maxHeight: '90vh',
       minWidth: '50%',
       data: {cancha: this.cancha}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.openEditDialog(result);
+      }
     });
-  }
-
-  aplicarFiltro(valor: string) {
-    this.dataSource.filter = valor.trim().toLowerCase();
   }
 
   openConfirmDialog(cancha: Cancha) {
@@ -85,9 +124,5 @@ export class CanchasListComponent implements OnInit {
         this.deleteCancha(cancha);
       }
     });
-  }
-
-  deleteCancha(cancha: Cancha) {
-    this.canchaService.deleteCancha(cancha.id).subscribe(_ => this.getCanchas());
   }
 }

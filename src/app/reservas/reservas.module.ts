@@ -8,7 +8,11 @@ import {
   MatDialogModule,
   MatSortModule,
   MatInputModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 import { CanchasListComponent } from './canchas/canchas-list/canchas-list.component';
@@ -19,8 +23,9 @@ import { CanchaDetailComponent } from './canchas/cancha-detail/cancha-detail.com
 import { ReservasComponent } from './reservas/reservas.component';
 import { ReservasListComponent } from './reservas/reservas-list/reservas-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReservaDetailComponent } from './reservas/reserva-detail/reserva-detail.component';
+import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,8 @@ import { ReservaDetailComponent } from './reservas/reserva-detail/reserva-detail
     CanchaDetailComponent,
     ReservasComponent,
     ReservasListComponent,
-    ReservaDetailComponent
+    ReservaDetailComponent,
+    ReservaAddComponent
   ],
   imports: [
     FormsModule,
@@ -39,17 +45,24 @@ import { ReservaDetailComponent } from './reservas/reserva-detail/reserva-detail
     MatSortModule,
     MatTableModule,
     MatInputModule,
+    MatSelectModule,
     MatDialogModule,
     MatButtonModule,
     FlexLayoutModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReservasRoutingModule
   ],
   exports: [
     CanchasComponent
   ],
   entryComponents: [
+    CanchaAddComponent,
+    ReservaAddComponent,
     CanchaDetailComponent,
     ReservaDetailComponent
   ]

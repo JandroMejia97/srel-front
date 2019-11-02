@@ -19,3 +19,8 @@ td, th {
   text-align: center !important;
   align-items: center;
 }
+.float-button{
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}

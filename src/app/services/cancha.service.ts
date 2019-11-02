@@ -25,9 +25,15 @@ export class CanchaService {
     private storageService: StorageService
   ) { }
 
-  getCanchas(pageSize: number = 25): Observable<Cancha[]> {
+  getCanchas(...criterios: any[]): Observable<Cancha[]> {
+    let filterParameters = '';
+    for (const key in criterios) {
+      if(criterios.hasOwnProperty(key)) {
+        filterParameters += `${key}=${criterios[key]}`;
+      }
+    }
     return this.http.get<Cancha[]>(
-      `${this.canchasUrl}/canchas?page_size=${pageSize}`,
+      `${this.canchasUrl}/canchas?${filterParameters}`,
       this.httpOptions
     ).pipe(
       tap(_ => console.log('Datos recuperados exitosamente')),
@@ -44,7 +50,7 @@ export class CanchaService {
   }
 
   updateCancha(cancha: Cancha): Observable<any> {
-    return this.http.put(`${this.canchasUrl}/canchas/`, cancha, this.httpOptions)
+    return this.http.put(`${this.canchasUrl}/canchas/${cancha.id}/`, cancha, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
       catchError(this.handleError<any>(`updateCancha(id=${cancha.id}, name: ${cancha.nombre})`))

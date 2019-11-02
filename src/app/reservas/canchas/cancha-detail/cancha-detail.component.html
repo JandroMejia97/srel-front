@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Detalle de la Cancha</h2>
+<h1 mat-dialog-title>Detalle de la Cancha</h1>
 <mat-dialog-content class="mat-typography">
-  <h3>{{ data.cancha.nombre }}</h3>
+  <h2>{{ data.cancha.nombre }}</h2>
   <p>
     <b>Tipo de Cancha </b>{{ data.cancha.tipo.tipo_cancha }}
   </p>
@@ -19,7 +19,7 @@
   <app-reservas-list [idCancha]="data.cancha.id"></app-reservas-list>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button [mat-dialog-close]="true" color="primary" cdkFocusInitial>
+  <button mat-raised-button [mat-dialog-close]="data.cancha" color="primary" cdkFocusInitial>
     <mat-icon>create</mat-icon>
     Editar
   </button>
