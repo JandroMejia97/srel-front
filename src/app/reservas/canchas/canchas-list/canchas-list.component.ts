@@ -40,7 +40,7 @@ export class CanchasListComponent implements OnInit {
   }
 
   getCanchas(): void {
-    this.canchaService.getCanchas({page_size: 'page_size', cantItems: this.cantItems}).subscribe((canchas: any) => {
+    this.canchaService.getCanchas({page_size: this.cantItems}).subscribe((canchas: any) => {
       this.dataSource.data = canchas.results;
     });
   }
@@ -64,8 +64,8 @@ export class CanchasListComponent implements OnInit {
     this.canchaService.updateCancha(cancha).subscribe(_ => this.getCanchas());
   }
 
-  aplicarFiltro(valor: string) {
-    this.dataSource.filter = valor.trim().toLowerCase();
+  applyFilter(value: string) {
+    this.dataSource.filter = value.trim().toLowerCase();
   }
 
   openAddDialog() {

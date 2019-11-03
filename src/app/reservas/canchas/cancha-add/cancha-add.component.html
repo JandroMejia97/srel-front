@@ -29,7 +29,8 @@
       <mat-label>Tipo de Cancha</mat-label>
       <mat-select
         matInput
-        formControlName="tipo">
+        formControlName="tipo"
+        [value]="(data.cancha !== null) ? data.cancha.tipo.id: ''">
         <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
           {{ tipo.tipo_cancha }}
         </mat-option>

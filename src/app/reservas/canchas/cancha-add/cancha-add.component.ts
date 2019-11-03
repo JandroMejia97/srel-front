@@ -3,7 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TipoCancha } from 'src/app/models/tipo-cancha';
 import { TipoCanchaService } from 'src/app/services/tipo.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Cancha } from 'src/app/models/cancha';
 
 @Component({
   selector: 'app-cancha-add',

@@ -4,6 +4,9 @@ import { Reserva } from 'src/app/models/reserva';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { ReservaDetailComponent } from '../reserva-detail/reserva-detail.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { ReservaAddComponent } from '../reserva-add/reserva-add.component';
+
+import * as mom from 'moment';
 
 @Component({
   selector: 'app-reservas-list',
@@ -40,13 +43,13 @@ export class ReservasListComponent implements OnInit {
   }
 
   getReservas(): void {
-    this.reservaService.getReservas({page_size: 'page_size', cantItems: this.cantItems}).subscribe((reservas: any) => {
+    this.reservaService.getReservas({page_size: this.cantItems}).subscribe((reservas: any) => {
       this.dataSource.data = reservas.results;
     });
   }
 
   getReservasFiltered(idCancha: number): void {
-    this.reservaService.getReservas({cancha: 'cancha', idCancha}).subscribe((reservas: any) => {
+    this.reservaService.getReservas({cancha: idCancha}).subscribe((reservas: any) => {
       const data = this.dataSource.data;
       reservas.results.forEach(reserva => {
         data.push(reserva);
@@ -58,23 +61,63 @@ export class ReservasListComponent implements OnInit {
   getReserva(id: number): void {
     this.reservaService.getReserva(id).subscribe(reserva => {
       this.reserva = reserva;
-      this.openDialog();
+      this.openDetailDialog();
     });
+  }
+
+  deleteReserva(reserva: Reserva) {
+    this.reservaService.deleteReserva(reserva.id).subscribe(_ => this.getReservas());
+  }
+
+  addReserva(reserva: Reserva) {
+    this.reservaService.addReserva(reserva).subscribe(_ => this.getReservas());
+  }
+
+  updateReserva(reserva: Reserva) {
+    this.reservaService.updateReserva(reserva).subscribe(_ => this.getReservas());
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog() {
+  openAddDialog() {
+    const dialogRef = this.dialog.open(ReservaAddComponent, {
+      minWidth: '50%',
+      data: {reserva: null, title: 'Añade una Reserva'}
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.addReserva(result);
+      }
+    });
+  }
+
+  openEditDialog(reserva: Reserva) {
+    const dialogRef = this.dialog.open(ReservaAddComponent, {
+      minWidth: '50%',
+      data: {reserva, title: 'Editando la Reserva hecha el ' + mom(reserva.fecha_reserva).format('YYYY-MM-DD')}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateReserva(result);
+      }
+    });
+  }
+
+  openDetailDialog() {
     const dialogRef = this.dialog.open(ReservaDetailComponent, {
-      height: '45vh',
+      maxHeight: '90vh',
       minWidth: '50%',
       data: {reserva: this.reserva}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.openEditDialog(result);
+      }
     });
   }
 
@@ -94,7 +137,4 @@ export class ReservasListComponent implements OnInit {
     });
   }
 
-  deleteReserva(reserva: Reserva) {
-    this.reservaService.deleteReserva(reserva.id).subscribe(_ => this.getReservas());
-  }
 }

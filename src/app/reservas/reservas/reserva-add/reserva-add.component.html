@@ -1,27 +1,35 @@
-<h2 mat-dialog-title>Añadir Reserva</h2>
+<h1 mat-dialog-title>{{ data.title }}</h1>
 <mat-dialog-content class="mat-typography">
   <form
     id="canchaForm"
     [formGroup]="form"
-    (ngSubmit)="submitForm()"
     novalidate
     fxLayout="column">
-    <mat-form-field>
+    <mat-form-field
+      matTooltip="Cliente que realiza la reserva"
+      matTooltipPosition="above">
       <input
         matInput
         placeholder="Nombre del cliente"
         formControlName="cliente"
         type="text">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field
+      matTooltip="Cancha reservada"
+      matTooltipPosition="above">
       <mat-label>Cancha</mat-label>
-      <mat-select forControlName="tipo_cancha">
-        <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
-          {{ tipo.tipo_cancha }}
+      <mat-select
+        matInput
+        forControlName="tipo_cancha"
+        [value]="(data.reserva !== null) ? data.reserva.cancha.id: ''">
+        <mat-option *ngFor="let cancha of canchas" [value]="cancha.id">
+          {{ cancha.nombre }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field
+      matTooltip="Fecha del turno"
+      matTooltipPosition="above">
       <input
         matInput
         [min]="minDate"
@@ -29,21 +37,39 @@
         placeholder="Seleccione una fecha"
         [matDatepicker]="fecha_turno"
         formControlName="fecha_turno"
+        [value]="(data.reserva !== null) ? data.reserva.fecha_turno: form.value.fecha_turno"
         (dateChange)="getReservas($event)">
       <mat-datepicker-toggle matSuffix [for]="fecha_turno"></mat-datepicker-toggle>
       <mat-datepicker #fecha_turno></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Ingrese una hora" formControlName="hora_turno" type="time">
+    <mat-form-field
+      matTooltip="Hora del turno"
+      matTooltipPosition="above">
+      <input
+        matInput
+        placeholder="Ingrese una hora"
+        formControlName="hora_turno"
+        type="time">
     </mat-form-field>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-raised-button [mat-dialog-close]="true" color="primary" cdkFocusInitial>
+<mat-dialog-actions align="center">
+  <button
+    mat-raised-button
+    [mat-dialog-close]="form.value"
+    matTooltip="Guardar y cerrar"
+    matTooltipPosition="left"
+    color="primary"
+    [disabled]="form.invalid ? true: false">
     <mat-icon>save</mat-icon>
     Guardar
   </button>
-  <button mat-button mat-dialog-close (click)="onCancelar()">
+  <button
+    mat-button
+    mat-dialog-close
+    matTooltip="Cerrar"
+    matTooltipPosition="right"
+    (click)="onCancelar()">
     <mat-icon>clear</mat-icon>
     Cerrar
   </button>

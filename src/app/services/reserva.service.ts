@@ -27,13 +27,18 @@ export class ReservaService {
 
   getReservas(...criterios: any[]): Observable<Reserva[]> {
     let filterParameters = '';
-    for (const key in criterios) {
-      if(criterios.hasOwnProperty(key)) {
-        filterParameters += `${key}=${criterios[key]}`;
-      }
+    if (criterios) {
+      filterParameters = '?';
+      criterios.forEach(criterio => {
+        for (const key in criterio) {
+          if (criterio.hasOwnProperty(key)) {
+            filterParameters += `${key}=${criterio[key]}&`;
+          }
+        }
+      });
     }
     return this.http.get<Reserva[]>(
-      `${this.reservasUrl}/reservas?${filterParameters}`,
+      `${this.reservasUrl}/reservas${filterParameters}`,
       this.httpOptions
     ).pipe(
       tap(_ => console.log('Datos recuperados exitosamente')),

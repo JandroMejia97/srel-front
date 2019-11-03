@@ -27,13 +27,18 @@ export class CanchaService {
 
   getCanchas(...criterios: any[]): Observable<Cancha[]> {
     let filterParameters = '';
-    for (const key in criterios) {
-      if(criterios.hasOwnProperty(key)) {
-        filterParameters += `${key}=${criterios[key]}`;
-      }
+    if (criterios) {
+      filterParameters = '?';
+      criterios.forEach(criterio => {
+        for (const key in criterio) {
+          if (criterio.hasOwnProperty(key)) {
+            filterParameters += `${key}=${criterio[key]}&`;
+          }
+        }
+      });
     }
     return this.http.get<Cancha[]>(
-      `${this.canchasUrl}/canchas?${filterParameters}`,
+      `${this.canchasUrl}/canchas${filterParameters}`,
       this.httpOptions
     ).pipe(
       tap(_ => console.log('Datos recuperados exitosamente')),
