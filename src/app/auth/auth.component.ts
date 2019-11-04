@@ -29,7 +29,6 @@ export class AuthComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    console.log(this.form);
   }
 
   submitLogin(): void {
