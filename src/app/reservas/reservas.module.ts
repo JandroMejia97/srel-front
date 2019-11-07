@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MatTableModule,
-  MatFormFieldModule,
   MatIconModule,
-  MatButtonModule,
-  MatDialogModule,
   MatSortModule,
   MatInputModule,
-  MatPaginatorModule,
+  MatTableModule,
+  MatButtonModule,
+  MatDialogModule,
   MatSelectModule,
+  MatTooltipModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatPaginatorModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatCheckboxModule,
-  MatTooltipModule
+  MatListModule,
+  MatChipsModule,
 } from '@angular/material';
 
 import { CanchasListComponent } from './canchas/canchas-list/canchas-list.component';
@@ -44,6 +46,8 @@ import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.componen
     CommonModule,
     MatIconModule,
     MatSortModule,
+    MatListModule,
+    MatChipsModule,
     MatTableModule,
     MatInputModule,
     MatSelectModule,

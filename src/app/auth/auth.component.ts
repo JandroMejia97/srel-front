@@ -48,7 +48,7 @@ export class AuthComponent implements OnInit {
     if (this.form.valid) {
       this.authService.register(new LoginObject(this.form.value))
       .subscribe(
-        data => this.submitLogin(),
+        _ => this.submitLogin(),
         error => this.error = JSON.parse(error._body));
     }
   }

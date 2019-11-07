@@ -18,6 +18,7 @@ export class ReservasListComponent implements OnInit {
     'fecha_turno',
     'fecha_reserva',
     'cliente',
+    'cancha',
     'acciones'
   ];
   public reserva: Reserva;
@@ -69,14 +70,6 @@ export class ReservasListComponent implements OnInit {
     this.reservaService.deleteReserva(reserva.id).subscribe(_ => this.getReservas());
   }
 
-  addReserva(reserva: Reserva) {
-    this.reservaService.addReserva(reserva).subscribe(_ => this.getReservas());
-  }
-
-  updateReserva(reserva: Reserva) {
-    this.reservaService.updateReserva(reserva).subscribe(_ => this.getReservas());
-  }
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -89,7 +82,7 @@ export class ReservasListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.addReserva(result);
+        //this.addReserva(result);
       }
     });
   }
@@ -101,9 +94,6 @@ export class ReservasListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.updateReserva(result);
-      }
     });
   }
 

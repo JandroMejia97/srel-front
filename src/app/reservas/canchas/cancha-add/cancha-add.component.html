@@ -1,5 +1,19 @@
 <h2 mat-dialog-title>{{ data.title }}</h2>
 <mat-dialog-content class="mat-typography">
+   <mat-chip-list *ngIf="form.invalid" class="mat-chip-list-stacked">
+    <mat-chip
+      *ngIf="form.get('nombre').hasError('required')">
+      El nombre de la cancha es requerido
+    </mat-chip>
+    <mat-chip
+      *ngIf="form.get('cod_interno').hasError('required')">
+      El código interno es requerido
+    </mat-chip>
+    <mat-chip
+      *ngIf="form.get('tipo').hasError('required')">
+      Seleccione el tipo de cancha
+    </mat-chip>
+  </mat-chip-list>
   <form
     id="cancha-form"
     [formGroup]="form"
@@ -24,7 +38,7 @@
         type="text">
     </mat-form-field>
     <mat-form-field
-      matTooltip="Tipo de cancha"
+      matTooltip="Tipo de Cancha"
       matTooltipPosition="above">
       <mat-label>Tipo de Cancha</mat-label>
       <mat-select

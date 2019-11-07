@@ -54,7 +54,7 @@
       <a
         (click)="getReserva(elemento.id)"
         routerLinkActive="router-link-active">
-        {{ elemento.fecha_turno | date: 'shortDate' }} {{ elemento.hora_turno }}
+        {{ elemento.fecha_turno | date: 'dd/MM/yyyy' }} {{ elemento.hora_turno }}
       </a>
     </td>
   </ng-container>
@@ -63,7 +63,7 @@
       Fecha de la Reserva
     </th>
     <td mat-cell *matCellDef="let elemento">
-      {{ elemento.fecha_reserva | date: 'shortDate' }}
+      {{ elemento.fecha_reserva | date: 'dd/MM/yyyy' }}
     </td>
   </ng-container>
   <ng-container matColumnDef="cliente">
@@ -71,6 +71,12 @@
       Cliente
     </th>
     <td mat-cell *matCellDef="let elemento"> {{ elemento.cliente }} </td>
+  </ng-container>
+  <ng-container matColumnDef="cancha">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Cancha
+    </th>
+    <td mat-cell *matCellDef="let elemento"> {{ elemento.cancha.nombre }} </td>
   </ng-container>
   <ng-container matColumnDef="acciones">
     <th mat-header-cell *matHeaderCellDef>

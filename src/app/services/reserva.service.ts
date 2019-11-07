@@ -65,7 +65,7 @@ export class ReservaService {
   }
 
   updateReserva(reserva: Reserva): Observable<any> {
-    return this.http.put(this.reservasUrl, reserva, this.httpOptions)
+    return this.http.put(`${this.reservasUrl}/reservas/${reserva.id}/`, reserva, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
       catchError(this.handleError<any>(`updateReserva(id=${reserva.id}, fecha: ${reserva.fecha_reserva})`))
@@ -73,7 +73,7 @@ export class ReservaService {
   }
 
   addReserva(reserva: Reserva): Observable<any> {
-    return this.http.post(this.reservasUrl, reserva, this.httpOptions)
+    return this.http.post(`${this.reservasUrl}/reservas/`, reserva, this.httpOptions)
     .pipe(
       tap(_ => this.log('Reserva guardada exitosamente')),
       catchError(this.handleError<Reserva>('addReserva()'))

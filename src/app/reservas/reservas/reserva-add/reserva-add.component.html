@@ -1,9 +1,32 @@
 <h1 mat-dialog-title>{{ data.title }}</h1>
 <mat-dialog-content class="mat-typography">
+  <mat-chip-list *ngIf="form.invalid"  class="mat-chip-list-stacked">
+    <mat-chip
+      *ngIf="form.get('cliente').hasError('required')">
+      El cliente es requerido
+    </mat-chip>
+    <mat-chip
+      *ngIf="form.get('cancha').hasError('required')">
+      Debe seleccionar una cancha
+    </mat-chip>
+    <mat-chip
+      *ngIf="form.get('fecha_turno').hasError('required')">
+      Debe seleccionar una fecha
+    </mat-chip>
+    <mat-chip
+      *ngIf="form.get('hora_turno').hasError('required')">
+      La hora es requerida
+    </mat-chip>
+    <mat-chip
+      *ngIf="!turnoValidator()">
+      La hora no debe traslaparse
+    </mat-chip>
+  </mat-chip-list>
   <form
     id="canchaForm"
     [formGroup]="form"
     novalidate
+    (submit)="submitForm()"
     fxLayout="column">
     <mat-form-field
       matTooltip="Cliente que realiza la reserva"
@@ -17,11 +40,12 @@
     <mat-form-field
       matTooltip="Cancha reservada"
       matTooltipPosition="above">
-      <mat-label>Cancha</mat-label>
+      <mat-label>Cancha Resevada</mat-label>
       <mat-select
         matInput
-        forControlName="tipo_cancha"
-        [value]="(data.reserva !== null) ? data.reserva.cancha.id: ''">
+        formControlName="cancha"
+        (selectionChange)="getReservas()"
+        [value]="(data.reserva != null) ? data.reserva.cancha.id: ''">
         <mat-option *ngFor="let cancha of canchas" [value]="cancha.id">
           {{ cancha.nombre }}
         </mat-option>
@@ -34,14 +58,29 @@
         matInput
         [min]="minDate"
         [max]="maxDate"
-        placeholder="Seleccione una fecha"
+        placeholder="Seleccione la fecha del turno"
         [matDatepicker]="fecha_turno"
         formControlName="fecha_turno"
-        [value]="(data.reserva !== null) ? data.reserva.fecha_turno: form.value.fecha_turno"
-        (dateChange)="getReservas($event)">
+        (dateChange)="getReservas()">
       <mat-datepicker-toggle matSuffix [for]="fecha_turno"></mat-datepicker-toggle>
-      <mat-datepicker #fecha_turno></mat-datepicker>
+      <mat-datepicker #fecha_turno type="date"></mat-datepicker>
     </mat-form-field>
+    <div *ngIf="reservas.length > 0">
+      <h2 matSubheader>Reservas</h2>
+      <p>
+        A continuación se muestran las reservas realizadas para esta cancha en el día seleccionado.
+      </p>
+      <mat-list>
+        <mat-list-item
+          *ngFor="let reserva of reservas"
+          fxFlex="33.33"
+          fxLayoutAlign="space-between">
+          <mat-icon mat-list-icon>bookmark</mat-icon>
+          <h3 matLine>{{ reserva.cliente }}</h3>
+          <p matLine>{{ reserva.hora_turno }}</p>
+        </mat-list-item>
+      </mat-list>
+    </div>
     <mat-form-field
       matTooltip="Hora del turno"
       matTooltipPosition="above">
@@ -56,11 +95,11 @@
 <mat-dialog-actions align="center">
   <button
     mat-raised-button
-    [mat-dialog-close]="form.value"
     matTooltip="Guardar y cerrar"
     matTooltipPosition="left"
     color="primary"
-    [disabled]="form.invalid ? true: false">
+    (click)="submitForm()"
+    [disabled]="!formValid()">
     <mat-icon>save</mat-icon>
     Guardar
   </button>
