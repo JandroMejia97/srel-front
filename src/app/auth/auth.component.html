@@ -2,42 +2,12 @@
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Iniciar Sesión">
       <mat-card>
-        <mat-card-header>
-          <mat-card-title>Iniciar Sesion</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <form id="login-form" [formGroup]="form" (ngSubmit)="submitLogin()" novalidate>
-            <mat-form-field>
-              <input matInput placeholder="Nombre de usuario" formControlName="username" type="text">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Contraseña" formControlName="password" type="password" required>
-            </mat-form-field>
-          </form>
-        </mat-card-content>
-        <mat-card-actions fxLayoutAlign="end center">
-          <button mat-raised-button color="primary" form="login-form" >Iniciar Sesión</button>
-        </mat-card-actions>
+        <app-login [form]="form" (submit)="submitLogin($event)"></app-login>
       </mat-card>
     </mat-tab>
     <mat-tab label="Registrarse">
       <mat-card>
-        <mat-card-header>
-          <mat-card-title>Registrarse</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <form id="register-form" [formGroup]="form" (ngSubmit)="submitRegister()" novalidate>
-            <mat-form-field>
-              <input matInput placeholder="Nombre de usuario" formControlName="username" type="text">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Contraseña" formControlName="password" type="password" required>
-            </mat-form-field>
-          </form>
-        </mat-card-content>
-        <mat-card-actions fxLayoutAlign="end center">
-          <button mat-raised-button color="primary" form="register-form" >Registrar</button>
-        </mat-card-actions>
+        <app-register [form]="form" (submit)="submitRegister($event)"></app-register>
       </mat-card>
     </mat-tab>
   </mat-tab-group>

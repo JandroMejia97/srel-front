@@ -1,0 +1,29 @@
+.mat-card-header{
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 700;
+}
+.mat-card-header .mat-card-title{
+  font-size:30px;
+}
+
+.mat-card-content {
+  display: flex;
+  min-width: 100%;
+  max-width: 300px;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  place-content: stretch center;
+  align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field-infix{
+  width: 100%;
+}

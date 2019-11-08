@@ -15,7 +15,7 @@
   top: 0;
   opacity: 1;
   float: left;
-  padding: 20px 50px 40px 50px;
+  padding: 20px 50px 20px 50px;
   width: 100%;
   background: #fff;
   border-radius: 10px;
@@ -24,7 +24,6 @@
   -ms-transform: scale(1);
   z-index: 5;
   max-width: 330px;
-  box-shadow: 0 4px 2px -2px rgba(66, 53, 53, 0.25), 0 1px 1px 0 rgba(0,0,0,0.25), 0 1px 3px 0 rgba(0,0,0,0.25);
 }
 .mat-tab-group:before {
   content: "";
@@ -40,41 +39,10 @@
   -ms-transform: scale(.95);
   z-index: -1;
 }
-.mat-card {
-  box-shadow: none !important;
-}
-.mat-card-header{
-  text-align: center;
-  width: 100%;
-  display: block;
-  font-weight: 700;
-}
-
 .mat-tab-label-content {
   font-weight: 700;
   font-size: 15px;
 }
-
-.mat-card-header .mat-card-title{
-  font-size:30px;
-}
-
-.mat-card-content {
-  display: flex;
-  min-width: 100%;
-  max-width: 300px;
-  width: 100%;
-}
-
-form {
-  width: 100%;
-  place-content: stretch center;
-  align-items: stretch;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-.mat-form-field-infix{
-  width: 100%;
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: none !important;
 }

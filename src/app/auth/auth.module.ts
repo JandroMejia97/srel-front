@@ -5,10 +5,12 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, Mat
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
-  declarations: [AuthComponent],
+  declarations: [AuthComponent, RegisterComponent, LoginComponent],
   imports: [
     FormsModule,
     CommonModule,
