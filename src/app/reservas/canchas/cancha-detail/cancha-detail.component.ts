@@ -3,8 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-cancha-detail',
-  templateUrl: './cancha-detail.component.html',
-  styleUrls: ['./cancha-detail.component.css']
+  templateUrl: './cancha-detail.component.html'
 })
 export class CanchaDetailComponent {
 

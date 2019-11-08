@@ -3,8 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-reserva-detail',
-  templateUrl: './reserva-detail.component.html',
-  styleUrls: ['./reserva-detail.component.css']
+  templateUrl: './reserva-detail.component.html'
 })
 export class ReservaDetailComponent implements OnInit {
 
