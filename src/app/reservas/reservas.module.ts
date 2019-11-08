@@ -33,21 +33,23 @@ import { TipoComponent } from './tipo/tipo.component';
 import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
 import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
 import { TipoAddComponent } from './tipo/tipo-add/tipo-add.component';
+import { BooleanToStringPipe } from '../pipe/boolean-to-string.pipe';
 
 @NgModule({
   declarations: [
-    CanchasListComponent,
-    CanchasComponent,
-    CanchaAddComponent,
-    CanchaDetailComponent,
-    ReservasComponent,
-    ReservasListComponent,
-    ReservaDetailComponent,
-    ReservaAddComponent,
     TipoComponent,
+    TipoAddComponent,
+    CanchasComponent,
     TipoListComponent,
+    ReservasComponent,
+    CanchaAddComponent,
+    ReservaAddComponent,
     TipoDetailComponent,
-    TipoAddComponent
+    BooleanToStringPipe,
+    CanchasListComponent,
+    CanchaDetailComponent,
+    ReservasListComponent,
+    ReservaDetailComponent
   ],
   imports: [
     FormsModule,

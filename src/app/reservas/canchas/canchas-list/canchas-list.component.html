@@ -72,7 +72,7 @@
       ¿Tiene Vestuario?
     </th>
     <td mat-cell *matCellDef="let elemento">
-      {{ elemento.tiene_vestuario ? 'Sí' : 'No' }}
+      {{ elemento.tiene_vestuario | booleanToString }}
     </td>
   </ng-container>
   <ng-container matColumnDef="tiene_iluminacion">
@@ -80,7 +80,7 @@
       ¿Tiene Iluminación?
     </th>
     <td mat-cell *matCellDef="let elemento">
-      {{ elemento.tiene_iluminacion ? 'Sí' : 'No' }}
+      {{ elemento.tiene_iluminacion | booleanToString }}
     </td>
   </ng-container>
   <ng-container matColumnDef="tiene_cesped_sintetico">
@@ -88,7 +88,7 @@
       ¿Tiene Césped Sintético?
     </th>
     <td mat-cell *matCellDef="let elemento">
-      {{ elemento.tiene_cesped_sintetico ? 'Sí' : 'No' }}
+      {{ elemento.tiene_cesped_sintetico | booleanToString }}
     </td>
   </ng-container>
   <ng-container matColumnDef="acciones">
