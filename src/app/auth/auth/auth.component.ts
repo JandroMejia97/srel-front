@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { StorageService } from '../services/storage.service';
-import { LoginObject } from '../models/login-object';
-import { Session } from '../models/session';
+import { StorageService } from '../../services/storage.service';
+import { LoginObject } from '../../models/login-object';
+import { Session } from '../../models/session';
 
 @Component({
   selector: 'app-auth',

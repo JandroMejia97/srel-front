@@ -12,9 +12,6 @@ th {
   font-weight: bold;
   font-size: 15px;
 }
-.mat-sort-header-container {
-  justify-content: center;
-}
 td, th {
   text-align: center !important;
   align-items: center;

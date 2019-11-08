@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTabsModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthComponent } from './auth.component';
+import { AuthComponent } from './auth/auth.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({
