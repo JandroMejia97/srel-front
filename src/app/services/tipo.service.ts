@@ -25,9 +25,20 @@ export class TipoCanchaService {
     private storageService: StorageService
   ) { }
 
-  getTipoCanchas(): Observable<TipoCancha[]> {
+  getTipoCanchas(...criterios: any[]): Observable<TipoCancha[]> {
+    let filterParameters = '';
+    if (criterios) {
+      filterParameters = '?';
+      criterios.forEach(criterio => {
+        for (const key in criterio) {
+          if (criterio.hasOwnProperty(key)) {
+            filterParameters += `${key}=${criterio[key]}&`;
+          }
+        }
+      });
+    }
     return this.http.get<TipoCancha[]>(
-      `${this.tipoCanchasUrl}/tipos/`,
+      `${this.tipoCanchasUrl}/tipos${filterParameters}`,
       this.httpOptions
     ).pipe(
       tap(_ => console.log('Datos recuperados exitosamente')),
@@ -44,7 +55,7 @@ export class TipoCanchaService {
   }
 
   updateTipoCancha(tipoCancha: TipoCancha): Observable<any> {
-    return this.http.put(this.tipoCanchasUrl, tipoCancha, this.httpOptions)
+    return this.http.put(`${this.tipoCanchasUrl}/tipos/${tipoCancha.id}/`, tipoCancha, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
       catchError(this.handleError<any>(`updateTipoCancha(id=${tipoCancha.id}, name: ${tipoCancha.tipo_cancha})`))
@@ -52,7 +63,7 @@ export class TipoCanchaService {
   }
 
   addTipoCancha(tipoCancha: TipoCancha): Observable<any> {
-    return this.http.post(this.tipoCanchasUrl, tipoCancha, this.httpOptions)
+    return this.http.post(`${this.tipoCanchasUrl}/tipos/`, tipoCancha, this.httpOptions)
     .pipe(
       tap(_ => this.log('Tipo de Cancha guardado exitosamente')),
       catchError(this.handleError<TipoCancha>('addTipoCancha()'))

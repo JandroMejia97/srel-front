@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Detalle del Tipo de Cancha</h1>
+<mat-dialog-content class="mat-typography">
+  <h2>{{ data.tipo.tipo_cancha }}</h2>
+  <p>
+    <b>Id </b>{{ data.tipo.id }}
+  </p>
+  <p>
+    <b>Tipo de Cancha </b>{{ data.tipo.tipo_cancha }}
+  </p>
+  <app-canchas-list [idTipo]="data.tipo.id"></app-canchas-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button [mat-dialog-close]="data.tipo" color="primary" cdkFocusInitial>
+    <mat-icon>create</mat-icon>
+    Editar
+  </button>
+  <button mat-button mat-dialog-close (click)="onCancelar()">
+    <mat-icon>clear</mat-icon>
+    Cerrar
+  </button>
+</mat-dialog-actions>

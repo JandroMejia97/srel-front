@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatPaginator } from '@angular/material';
 import { MatSort } from '@angular/material/sort'
 import { CanchaService } from 'src/app/services/cancha.service';
@@ -21,6 +21,7 @@ export class CanchasListComponent implements OnInit {
     'tiene_cesped_sintetico',
     'acciones'
   ];
+  @Input() idTipo: number;
   public cancha: Cancha;
   public dialogActions: string;
   public dataSource = new MatTableDataSource<Cancha>([]);
@@ -34,7 +35,11 @@ export class CanchasListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getCanchas();
+    if (this.idTipo) {
+      this.getCanchasFiltered(this.idTipo);
+    } else {
+      this.getCanchas();
+    }
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -42,6 +47,16 @@ export class CanchasListComponent implements OnInit {
   getCanchas(): void {
     this.canchaService.getCanchas({page_size: this.cantItems}).subscribe((canchas: any) => {
       this.dataSource.data = canchas.results;
+    });
+  }
+
+  getCanchasFiltered(idTipo: number): void {
+    this.canchaService.getCanchas({tipo: idTipo}).subscribe((canchas: any) => {
+      const data = this.dataSource.data;
+      canchas.results.forEach(cancha => {
+        data.push(cancha);
+      });
+      this.dataSource.data = data;
     });
   }
 

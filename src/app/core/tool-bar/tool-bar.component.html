@@ -15,6 +15,10 @@
     {{title}}
   </span>
   <span fxFlex fxLayout fxLayoutAlign="flex-end center" fxHide.lt-md="TRUE">
+    <a mat-bottom routerLink="/tipos" *ngIf="storageService.isAuthenticated()">
+      <mat-icon>category</mat-icon>
+      Tipos de Canchas
+    </a>
     <a mat-bottom routerLink="/canchas" *ngIf="storageService.isAuthenticated()">
       <mat-icon>sports_soccer</mat-icon>
       Canchas

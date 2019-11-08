@@ -29,6 +29,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReservaDetailComponent } from './reservas/reserva-detail/reserva-detail.component';
 import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.component';
+import { TipoComponent } from './tipo/tipo.component';
+import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
+import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
+import { TipoAddComponent } from './tipo/tipo-add/tipo-add.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.componen
     ReservasComponent,
     ReservasListComponent,
     ReservaDetailComponent,
-    ReservaAddComponent
+    ReservaAddComponent,
+    TipoComponent,
+    TipoListComponent,
+    TipoDetailComponent,
+    TipoAddComponent
   ],
   imports: [
     FormsModule,
@@ -67,8 +75,10 @@ import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.componen
     CanchasComponent
   ],
   entryComponents: [
+    TipoAddComponent,
     CanchaAddComponent,
     ReservaAddComponent,
+    TipoDetailComponent,
     CanchaDetailComponent,
     ReservaDetailComponent
   ]

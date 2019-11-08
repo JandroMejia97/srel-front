@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content class="mat-typography">
+   <mat-chip-list *ngIf="form.invalid" class="mat-chip-list-stacked">
+    <mat-chip
+      *ngIf="form.get('tipo_cancha').hasError('required')">
+      El nombre del tipo de cancha es requerido
+    </mat-chip>
+  </mat-chip-list>
+  <form
+    id="cancha-form"
+    [formGroup]="form"
+    novalidate
+    fxLayout="column">
+    <mat-form-field
+      matTooltip="Nombre del tipo de Cancha"
+      matTooltipPosition="above">
+      <input
+        matInput
+        placeholder="Nombre del tipo de cancha. Ejemplo: Cancha 7"
+        formControlName="tipo_cancha"
+        type="text">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button
+    mat-raised-button
+    [mat-dialog-close]="form.value"
+    matTooltip="Guardar y cerrar"
+    matTooltipPosition="left"
+    color="primary"
+    [disabled]="form.invalid ? true: false">
+    <mat-icon>save</mat-icon>
+    Guardar
+  </button>
+  <button
+    mat-button
+    mat-dialog-close
+    matTooltip="Cerrar"
+    matTooltipPosition="right"
+    (click)="onCancelar()">
+    <mat-icon>clear</mat-icon>
+    Cerrar
+  </button>
+</mat-dialog-actions>

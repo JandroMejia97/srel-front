@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+  padding: 20px;
+}
+a {
+text-decoration: none;
+}
+a:hover {
+text-transform: uppercase;
+}
+th {
+font-weight: bold;
+font-size: 15px;
+}
+.mat-sort-header-container {
+justify-content: center;
+}
+td, th {
+text-align: center !important;
+align-items: center;
+}
+.float-button{
+position: absolute;
+right: 30px;
+bottom: 30px;
+}

@@ -5,6 +5,9 @@ import { CanchaAddComponent } from './canchas/cancha-add/cancha-add.component';
 import { CanchasListComponent } from './canchas/canchas-list/canchas-list.component';
 import { ReservasComponent } from './reservas/reservas.component';
 import { ReservasListComponent } from './reservas/reservas-list/reservas-list.component';
+import { TipoComponent } from './tipo/tipo.component';
+import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
+import { TipoAddComponent } from './tipo/tipo-add/tipo-add.component';
 
 
 const routes: Routes = [
@@ -33,6 +36,20 @@ const routes: Routes = [
       {
         path: 'add',
         component: CanchaAddComponent
+      }
+    ]
+  },
+  {
+    path: 'tipos',
+    component: TipoComponent,
+    children: [
+      {
+        path: '',
+        component: TipoListComponent
+      },
+      {
+        path: 'add',
+        component: TipoAddComponent
       }
     ]
   }
