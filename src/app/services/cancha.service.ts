@@ -80,20 +80,18 @@ export class CanchaService {
     );
   }
 
-  private log(mensaje: string){
+  private log(mensaje: string) {
     this.mensajeService.openSnackBar(`${ mensaje }`);
   }
 
   handleError<T>(operacion: string = 'operacion()', resultado?: T) {
     return (error: any): Observable<T> => {
       if (error.error) {
-        let errorMessage = '';
         for (const key in error.error) {
           if (error.error.hasOwnProperty(key)) {
-            errorMessage += (key).toUpperCase() + ': ' + error.error[key];
+            this.log(`${(key).toUpperCase()}: ${error.error[key]}`);
           }
         }
-        this.log(`${errorMessage}`);
       }
       return of(resultado as T);
     };

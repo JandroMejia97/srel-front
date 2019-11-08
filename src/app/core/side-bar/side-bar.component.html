@@ -1,23 +1,43 @@
 <mat-sidenav-container fxFlexFill color="primary">
   <mat-sidenav mode="over" [opened]="openedSideBar" color="primary" fxHide.gt-sm="TRUE">
     <mat-nav-list>
-      <a mat-bottom routerLink="/tipos" *ngIf="storageService.isAuthenticated()">
+      <a
+        mat-bottom
+        mat-list-item
+        routerLink="/tipos"
+        *ngIf="storageService.isAuthenticated()">
         <mat-icon>category</mat-icon>
         Tipos de Canchas
       </a>
-      <a mat-bottom mat-list-item routerLink="/canchas" *ngIf="storageService.isAuthenticated()">
+      <a
+        mat-bottom
+        mat-list-item
+        routerLink="/canchas"
+        *ngIf="storageService.isAuthenticated()">
         <mat-icon>sports_soccer</mat-icon>
         Canchas
       </a>
-      <a mat-bottom mat-list-item routerLink="/reservas" *ngIf="storageService.isAuthenticated()">
+      <a
+        mat-bottom
+        mat-list-item
+        routerLink="/reservas"
+        *ngIf="storageService.isAuthenticated()">
         <mat-icon>bookmark</mat-icon>
         Reservas
       </a>
-      <a mat-bottom mat-list-item routerLink="/auth" *ngIf="!storageService.isAuthenticated()">
+      <a
+        mat-bottom
+        mat-list-item
+        routerLink="/auth"
+        *ngIf="!storageService.isAuthenticated()">
         <mat-icon>supervised_user_circle</mat-icon>
         Iniciar Sesión
       </a>
-      <a mat-bottom mat-list-item (click)="logout()" *ngIf="storageService.isAuthenticated()">
+      <a
+        mat-bottom
+        mat-list-item
+        (click)="logout()"
+         *ngIf="storageService.isAuthenticated()">
         <mat-icon>last_page</mat-icon>
         Cerrar Sesión
       </a>

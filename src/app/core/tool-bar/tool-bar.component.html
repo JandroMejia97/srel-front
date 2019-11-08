@@ -15,23 +15,38 @@
     {{title}}
   </span>
   <span fxFlex fxLayout fxLayoutAlign="flex-end center" fxHide.lt-md="TRUE">
-    <a mat-bottom routerLink="/tipos" *ngIf="storageService.isAuthenticated()">
+    <a
+      mat-bottom
+      routerLink="/tipos"
+      *ngIf="storageService.isAuthenticated()">
       <mat-icon>category</mat-icon>
       Tipos de Canchas
     </a>
-    <a mat-bottom routerLink="/canchas" *ngIf="storageService.isAuthenticated()">
+    <a
+      mat-bottom
+      routerLink="/canchas"
+      *ngIf="storageService.isAuthenticated()">
       <mat-icon>sports_soccer</mat-icon>
       Canchas
     </a>
-    <a mat-bottom routerLink="/reservas" *ngIf="storageService.isAuthenticated()">
+    <a
+      mat-bottom
+      routerLink="/reservas"
+      *ngIf="storageService.isAuthenticated()">
       <mat-icon>bookmark</mat-icon>
       Reservas
     </a>
-    <a mat-bottom routerLink="/auth" *ngIf="!storageService.isAuthenticated()">
+    <a
+      mat-bottom
+      routerLink="/auth"
+      *ngIf="!storageService.isAuthenticated()">
       <mat-icon>supervised_user_circle</mat-icon>
       Iniciar Sesión
     </a>
-    <a mat-bottom (click)="logout()" *ngIf="storageService.isAuthenticated()">
+    <a
+      mat-bottom
+      (click)="logout()"
+      *ngIf="storageService.isAuthenticated()">
       <mat-icon>last_page</mat-icon>
       Cerrar Sesión
     </a>

@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class MensajeService {
-  mensaje: string;
 
   constructor(
     public snackBar: MatSnackBar

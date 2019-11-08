@@ -7,6 +7,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 import { ReservaAddComponent } from '../reserva-add/reserva-add.component';
 
 import * as mom from 'moment';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-reservas-list',
@@ -66,6 +67,14 @@ export class ReservasListComponent implements OnInit {
     });
   }
 
+  addReserva(reserva: Reserva) {
+    this.reservaService.addReserva(reserva).subscribe(_ => this.getReservas());
+  }
+
+  updateReserva(reserva: Reserva) {
+    this.reservaService.updateReserva(reserva).subscribe(_ => this.getReservas());
+  }
+
   deleteReserva(reserva: Reserva) {
     this.reservaService.deleteReserva(reserva.id).subscribe(_ => this.getReservas());
   }
@@ -82,7 +91,7 @@ export class ReservasListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        //this.addReserva(result);
+        this.addReserva(result);
       }
     });
   }
@@ -93,7 +102,12 @@ export class ReservasListComponent implements OnInit {
       data: {reserva, title: 'Editando la Reserva hecha el ' + mom(reserva.fecha_reserva).format('YYYY-MM-DD')}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().pipe(
+      filter(result => result)
+    ).subscribe(result => {
+      if (result) {
+        this.addReserva(result);
+      }
     });
   }
 
@@ -104,7 +118,9 @@ export class ReservasListComponent implements OnInit {
       data: {reserva: this.reserva}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().pipe(
+      filter(result => result)
+    ).subscribe(result => {
       if (result) {
         this.openEditDialog(result);
       }

@@ -6,6 +6,7 @@ import { Reserva } from '../models/reserva';
 import { MensajeService } from './mensaje.service';
 import { StorageService } from './storage.service';
 import { environment } from 'src/environments/environment';
+import { delay } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +69,7 @@ export class ReservaService {
     return this.http.put(`${this.reservasUrl}/reservas/${reserva.id}/`, reserva, this.httpOptions)
     .pipe(
       tap(_ => this.log('Datos actualizados exitosamente')),
-      catchError(this.handleError<any>(`updateReserva(id=${reserva.id}, fecha: ${reserva.fecha_reserva})`))
+      catchError(this.handleError<any>(`updateReserva(id=${reserva.id})`))
     );
   }
 
@@ -96,7 +97,13 @@ export class ReservaService {
 
   handleError<T>(operacion: string = 'operacion()', resultado?: T) {
     return (error: any): Observable<T> => {
-      this.log(`${operacion} fallida: ${error.message}`);
+      console.log(error);
+      for (const key in error.error) {
+        if (error.error.hasOwnProperty(key)) {
+          this.log(`${key}: ${error.error[key]}`);
+          delay(4500);
+        }
+      }
       return of(resultado as T);
     };
   }

@@ -6,7 +6,6 @@ import { ReservaService } from 'src/app/services/reserva.service';
 import * as mom from 'moment';
 import { Cancha } from 'src/app/models/cancha';
 import { Reserva } from 'src/app/models/reserva';
-import { MensajeService } from 'src/app/services/mensaje.service';
 
 @Component({
   selector: 'app-reserva-add',
@@ -26,7 +25,6 @@ export class ReservaAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private canchaService: CanchaService,
     private reservaService: ReservaService,
-    private mensajeService: MensajeService,
     @Inject(MAT_DIALOG_DATA) public data?: any
   ) { }
 
@@ -73,12 +71,7 @@ export class ReservaAddComponent implements OnInit {
   }
 
   public turnoValidator(): boolean {
-    const vector = this.form.get('fecha_turno').value.toString().split(' ');
-    let nuevaCadena = '';
-    for (let i = 0; i < 6; i++) {
-      nuevaCadena += vector[i] + ' ';
-    }
-    const date = mom(nuevaCadena, 'ddd MMM DD YYYY HH:mm:ss Z ZZ');
+    const date = this.stringToMoment(this.form.get('fecha_turno').value);
     const time = mom(this.form.get('hora_turno').value.toString(), 'HH:mm');
     const turno = date.set({
       hours: time.get('hours'),
@@ -100,28 +93,31 @@ export class ReservaAddComponent implements OnInit {
     return valid;
   }
 
-  addReserva(reserva: Reserva) {
-    this.reservaService.addReserva(reserva).subscribe(_ => this.getReservas());
-  }
-
-  updateReserva(reserva: Reserva) {
-    this.reservaService.updateReserva(reserva).subscribe(_ => this.getReservas());
-  }
-
   formValid() {
     return (this.form.valid && this.turnoValidator()) ? true : false;
   }
 
+  stringToMoment(fecha: any): mom.Moment {
+    const vector = fecha.toString().split(' ');
+    let nuevaCadena = '';
+    for (let i = 0; i < 6; i++) {
+      nuevaCadena += vector[i] + ' ';
+    }
+    return mom(
+      nuevaCadena,
+      'ddd MMM DD YYYY HH:mm:ss Z ZZ'
+    );
+  }
+
   submitForm() {
     if (this.formValid()) {
+      const reserva = this.form.value;
+      reserva.fecha_turno = this.stringToMoment(reserva.fecha_turno).format('YYYY-MM-DD');
       if (this.data.reserva) {
-        this.updateReserva(this.form.value);
+        this.dialogRef.close(reserva);
       } else {
-        this.addReserva(this.form.value);
+        this.dialogRef.close(reserva);
       }
-    } else {
-      console.log('TURNO INVALIDO');
-      this.mensajeService.openSnackBar(`El turno seleccionado no es válido`);
     }
   }
 
