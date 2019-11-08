@@ -5,9 +5,10 @@ import { CanchaAddComponent } from './canchas/cancha-add/cancha-add.component';
 import { CanchasListComponent } from './canchas/canchas-list/canchas-list.component';
 import { ReservasComponent } from './reservas/reservas.component';
 import { ReservasListComponent } from './reservas/reservas-list/reservas-list.component';
-import { TipoComponent } from './tipo/tipo.component';
-import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
-import { TipoAddComponent } from './tipo/tipo-add/tipo-add.component';
+import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.component';
+import { TiposComponent } from './tipos/tipos.component';
+import { TiposListComponent } from './tipos/tipos-list/tipos-list.component';
+import { TipoAddComponent } from './tipos/tipo-add/tipo-add.component';
 
 
 const routes: Routes = [
@@ -35,17 +36,17 @@ const routes: Routes = [
       },
       {
         path: 'add',
-        component: CanchaAddComponent
+        component: ReservaAddComponent
       }
     ]
   },
   {
     path: 'tipos',
-    component: TipoComponent,
+    component: TiposComponent,
     children: [
       {
         path: '',
-        component: TipoListComponent
+        component: TiposListComponent
       },
       {
         path: 'add',
@@ -59,4 +60,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ReservasRoutingModule { }
+export class SystemRoutingModule { }

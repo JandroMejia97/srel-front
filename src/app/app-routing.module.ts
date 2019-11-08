@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [ AuthorizatedGuard ],
-    loadChildren: () => import('./reservas/reservas.module').then(r => r.ReservasModule)
+    loadChildren: () => import('./system/system.module').then(s => s.SystemModule)
   },
   {
     path: 'auth',

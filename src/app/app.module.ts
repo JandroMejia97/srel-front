@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { ReservasModule } from './reservas/reservas.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material';
 import { AuthService } from './services/auth.service';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { SystemModule } from './system/system.module';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,9 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     AuthModule,
     CoreModule,
+    SystemModule,
     SharedModule,
     BrowserModule,
-    ReservasModule,
     HttpClientModule,
     MatSnackBarModule,
     BrowserAnimationsModule

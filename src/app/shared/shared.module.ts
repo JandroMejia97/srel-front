@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedRoutingModule } from './shared-routing.module';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule, MatButtonModule, MatIconModule } from '@angular/material';
 
@@ -9,11 +8,10 @@ import { MatDialogModule, MatButtonModule, MatIconModule } from '@angular/materi
 @NgModule({
   declarations: [ConfirmationDialogComponent],
   imports: [
+    CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule,
-    CommonModule,
-    SharedRoutingModule
+    MatDialogModule
   ],
   exports: [
     ConfirmationDialogComponent

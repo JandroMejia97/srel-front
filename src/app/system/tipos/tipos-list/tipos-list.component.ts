@@ -8,10 +8,10 @@ import { TipoCanchaService } from 'src/app/services/tipo.service';
 
 @Component({
   selector: 'app-tipo-list',
-  templateUrl: './tipo-list.component.html',
-  styleUrls: ['./tipo-list.component.css']
+  templateUrl: './tipos-list.component.html',
+  styleUrls: ['./tipos-list.component.css']
 })
-export class TipoListComponent implements OnInit {
+export class TiposListComponent implements OnInit {
   columnasMostradas: string[] = [
     'tipo_cancha',
     'acciones'
