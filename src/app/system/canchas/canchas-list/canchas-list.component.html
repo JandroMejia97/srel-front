@@ -16,7 +16,7 @@
   fxLayout.lt-md="column"
   fxLayoutAlign.gt-sm="space-between"
   (sendCantItems)="getCanchas()"
-  (sendFilterText)="applyFilter()">
+  (sendFilterText)="applyFilter($event)">
 </app-actions>
 <button
   mat-raised-button
