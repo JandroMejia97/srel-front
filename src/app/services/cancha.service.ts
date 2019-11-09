@@ -31,7 +31,7 @@ export class CanchaService {
       filterParameters = '?';
       criterios.forEach(criterio => {
         for (const key in criterio) {
-          if (criterio.hasOwnProperty(key)) {
+          if (criterio.hasOwnProperty(key) && !isNaN(criterio[key])) {
             filterParameters += `${key}=${criterio[key]}&`;
           }
         }

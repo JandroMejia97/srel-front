@@ -6,6 +6,7 @@ import { Cancha } from 'src/app/models/cancha';
 import { CanchaDetailComponent } from '../cancha-detail/cancha-detail.component';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { CanchaAddComponent } from '../cancha-add/cancha-add.component';
+import { AdvancedComponent } from '../../actions/advanced/advanced.component';
 
 @Component({
   selector: 'app-canchas-list',
@@ -36,7 +37,7 @@ export class CanchasListComponent implements OnInit {
 
   ngOnInit() {
     if (this.idTipo) {
-      this.getCanchasFiltered(this.idTipo);
+      this.getCanchasFiltered({tipo: this.idTipo});
     } else {
       this.getCanchas();
     }
@@ -50,13 +51,9 @@ export class CanchasListComponent implements OnInit {
     });
   }
 
-  getCanchasFiltered(idTipo: number): void {
-    this.canchaService.getCanchas({tipo: idTipo}).subscribe((canchas: any) => {
-      const data = this.dataSource.data;
-      canchas.results.forEach(cancha => {
-        data.push(cancha);
-      });
-      this.dataSource.data = data;
+  getCanchasFiltered(criterios: any): void {
+    this.canchaService.getCanchas(criterios).subscribe((canchas: any) => {
+      this.dataSource.data = canchas.results;
     });
   }
 
@@ -135,6 +132,19 @@ export class CanchasListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteCancha(cancha);
+      }
+    });
+  }
+
+  openAdvancedFilterDialog() {
+    const dialogRef = this.dialog.open(AdvancedComponent, {
+      maxHeight: '90vh',
+      minWidth: '50%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getCanchasFiltered(result);
       }
     });
   }

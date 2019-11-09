@@ -1,0 +1,76 @@
+<h2 mat-dialog-title>Filtro Avanzado</h2>
+<mat-dialog-content class="mat-typography">
+  <form
+    id="advanced-form"
+    [formGroup]="form"
+    novalidate
+    fxLayout="column">
+    <mat-form-field>
+      <mat-label>Tipo de Cancha</mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option *ngFor="let tipoCancha of tiposCancha" [value]="tipoCancha.id">
+          {{ tipoCancha.tipo_cancha }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        ¿Tiene vestuario?
+      </mat-label>
+      <mat-select formControlName="tiene_vestuario">
+        <mat-option [value]="true">
+          Sí
+        </mat-option>
+        <mat-option [value]="false">
+          No
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        ¿Tiene iluminación?
+      </mat-label>
+      <mat-select formControlName="tiene_iluminacion">
+        <mat-option [value]="true">
+          Sí
+        </mat-option>
+        <mat-option [value]="false">
+          No
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        ¿Tiene cesped sintético?
+      </mat-label>
+      <mat-select formControlName="tiene_cesped_sintetico">
+        <mat-option [value]="true">
+          Sí
+        </mat-option>
+        <mat-option [value]="false">
+          No
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button
+      mat-raised-button
+      [mat-dialog-close]="form.value"
+      matTooltip="Filtrar"
+      matTooltipPosition="left"
+      color="primary">
+      <mat-icon>location_searching</mat-icon>
+      Filtrar
+    </button>
+    <button
+      mat-button
+      mat-dialog-close
+      matTooltip="Cerrar"
+      matTooltipPosition="right"
+      (click)="onCancelar()">
+      <mat-icon>clear</mat-icon>
+      Cerrar
+    </button>
+  </mat-dialog-actions>

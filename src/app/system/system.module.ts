@@ -34,10 +34,13 @@ import { TiposListComponent } from './tipos/tipos-list/tipos-list.component';
 import { TipoDetailComponent } from './tipos/tipo-detail/tipo-detail.component';
 import { TipoAddComponent } from './tipos/tipo-add/tipo-add.component';
 import { BooleanToStringPipe } from '../pipe/boolean-to-string.pipe';
+import { ActionsComponent } from './actions/actions.component';
+import { AdvancedComponent } from './actions/advanced/advanced.component';
 
 @NgModule({
   declarations: [
     TiposComponent,
+    ActionsComponent,
     TipoAddComponent,
     CanchasComponent,
     ReservasComponent,
@@ -49,7 +52,8 @@ import { BooleanToStringPipe } from '../pipe/boolean-to-string.pipe';
     CanchasListComponent,
     CanchaDetailComponent,
     ReservasListComponent,
-    ReservaDetailComponent
+    ReservaDetailComponent,
+    AdvancedComponent
   ],
   imports: [
     FormsModule,
@@ -75,6 +79,7 @@ import { BooleanToStringPipe } from '../pipe/boolean-to-string.pipe';
   ],
   entryComponents: [
     TipoAddComponent,
+    AdvancedComponent,
     CanchaAddComponent,
     ReservaAddComponent,
     TipoDetailComponent,

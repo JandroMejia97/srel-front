@@ -2,7 +2,7 @@
   <mat-card-title>Iniciar Sesion</mat-card-title>
 </mat-card-header>
 <mat-card-content>
-  <form id="login-form" [formGroup]="form" (ngSubmit)="submit.emit()" novalidate>
+  <form id="login-form" [formGroup]="form" (ngSubmit)="sendForm.emit()" novalidate>
     <mat-form-field>
       <input matInput placeholder="Nombre de usuario" formControlName="username" type="text">
     </mat-form-field>
