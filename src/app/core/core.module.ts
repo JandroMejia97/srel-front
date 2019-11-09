@@ -9,7 +9,6 @@ import { AuthorizatedGuard } from '../services/auth-guard';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { AppRoutingModule } from '../app-routing.module';
 
-
 @NgModule({
   declarations: [ToolBarComponent, SideBarComponent],
   imports: [

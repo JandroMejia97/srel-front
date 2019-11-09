@@ -4,3 +4,6 @@ mat-sidenav-content {
 mat-sidenav {
   margin-top: 55px !important;
 }
+app-footer {
+  margin-bottom: 70px !important;
+}
