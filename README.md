@@ -118,7 +118,7 @@ visualización de los distintos forms ([Ventanas Modales - Bootstrap](http://get
 * Utilización de AJAX para acciones de CREATE/EDIT/REMOVE.
 ([AJAX con JQuery](http://api.jquery.com/jquery.ajax/))
 
-## Solución Plantead - Sistema de Reservas en Línea - SReL
+## Solución Planteada - Sistema de Reservas en Línea - SReL
 Para el backend se creará una API con DRF que será consumida por Angular en el Frontend. Ambos estáran desplegadas en [Heroku](https://heroku.com/)
 ### Diagramas
 #### Modelo del Dominio
