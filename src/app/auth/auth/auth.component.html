@@ -2,12 +2,12 @@
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Iniciar Sesión">
       <mat-card>
-        <app-login [form]="form" (submit)="submitLogin($event)"></app-login>
+        <app-login [form]="form" (sendForm)="submitLogin()"></app-login>
       </mat-card>
     </mat-tab>
     <mat-tab label="Registrarse">
       <mat-card>
-        <app-register [form]="form" (submit)="submitRegister($event)"></app-register>
+        <app-register [form]="form" (sendForm)="submitRegister()"></app-register>
       </mat-card>
     </mat-tab>
   </mat-tab-group>

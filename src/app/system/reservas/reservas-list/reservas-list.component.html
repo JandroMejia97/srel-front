@@ -15,8 +15,8 @@
   fxLayout="row"
   fxLayout.lt-md="column"
   fxLayoutAlign.gt-sm="space-between"
-  (sendCantItems)="getReservas($event)"
-  (sendFilterText)="applyFilter($event)">
+  (sendCantItems)="getReservas()"
+  (sendFilterText)="applyFilter()">
 </app-actions>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
   <ng-container matColumnDef="fecha_turno">

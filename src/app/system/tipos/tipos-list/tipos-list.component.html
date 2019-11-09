@@ -13,8 +13,8 @@
   fxLayout="row"
   fxLayout.lt-md="column"
   fxLayoutAlign.gt-sm="space-between"
-  (sendCantItems)="getTipoCanchas($event)"
-  (sendFilterText)="applyFilter($event)">
+  (sendCantItems)="getTipoCanchas()"
+  (sendFilterText)="applyFilter()">
 </app-actions>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
   <ng-container matColumnDef="tipo_cancha">
