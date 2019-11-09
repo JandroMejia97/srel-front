@@ -9,11 +9,13 @@ import { ReservaAddComponent } from './reservas/reserva-add/reserva-add.componen
 import { TiposComponent } from './tipos/tipos.component';
 import { TiposListComponent } from './tipos/tipos-list/tipos-list.component';
 import { TipoAddComponent } from './tipos/tipo-add/tipo-add.component';
+import { AuthorizatedGuard } from '../services/auth-guard';
 
 
 const routes: Routes = [
   {
     path: 'canchas',
+    canActivate: [ AuthorizatedGuard ],
     component: CanchasComponent,
     children: [
       {
@@ -28,6 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'reservas',
+    canActivate: [ AuthorizatedGuard ],
     component: ReservasComponent,
     children: [
       {
@@ -42,6 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'tipos',
+    canActivate: [ AuthorizatedGuard ],
     component: TiposComponent,
     children: [
       {

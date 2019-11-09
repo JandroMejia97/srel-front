@@ -119,26 +119,27 @@ visualización de los distintos forms ([Ventanas Modales - Bootstrap](http://get
 ([AJAX con JQuery](http://api.jquery.com/jquery.ajax/))
 
 ## Solución Plantead - Sistema de Reservas en Línea - SReL
-Para el backend se creará una API con DRF que será consumida por Angular en el Frontend. Ambos estáran desplegadas en [Heroku](https://heroku.com/)
+Para el backend se creará una API con DRF que será consumida por Angular en el Frontend. Ambos estáran desplegadas en [Heroku](https://heroku.com/).
+El código fuente se encuentra alojado en GitHub. [FrontEnd](https://github.com/JandroMejia97/srel-front). [Backend](https://github.com/JandroMejia97/srel-api)
 ### Diagramas
 #### Modelo del Dominio
 <p align="center">
-  <img width="800px" src="https://drive.google.com/uc?export=view&id=15hoWVtwl8I87G_4r3V_awwPmp4E5k8MT" alt="Modelo del Dominio">
+    <img width="800px" src="https://drive.google.com/uc?export=view&id=15hoWVtwl8I87G_4r3V_awwPmp4E5k8MT" alt="Modelo del Dominio">
 </p>
 
 #### Módulos
 <p align="center">
-  <img width="800px" src="https://drive.google.com/uc?export=view&id=1d0cNC3GBXVeMCP4mwMm2bwu1eQ2XqyWy" alt="Módulos">
+    <img width="800px" src="https://drive.google.com/uc?export=view&id=1d0cNC3GBXVeMCP4mwMm2bwu1eQ2XqyWy" alt="Módulos">
 </p>
 
 ##### Módulos Generales y sus componentes
 <p align="center">
-  <img width="800px" src="https://drive.google.com/uc?export=view&id=1woRh3fP60lduelrYfTgq5hlH3iJpaQ8Y" alt="Módulos">
+    <img width="800px" src="https://drive.google.com/uc?export=view&id=1woRh3fP60lduelrYfTgq5hlH3iJpaQ8Y" alt="Módulos">
 </p>
 
 ##### Módulo del Sistema y sus componentes
 <p align="center">
-  <img width="800px" src="https://drive.google.com/uc?export=view&id=1LAeslKAX9AVmM0sSrpaIzRJaGSW2_SMm" alt="Módulos">
+    <img width="800px" src="https://drive.google.com/uc?export=view&id=1LAeslKAX9AVmM0sSrpaIzRJaGSW2_SMm" alt="Módulos">
 </p>
 
 ### Tecnologías
@@ -158,4 +159,3 @@ Para el backend se creará una API con DRF que será consumida por Angular en el
 * [Express](https://expressjs.com/es/)
 * [MomentJS](http://momentjs.com/)
 * [ngx-markdown](https://jfcere.github.io/ngx-markdown/)
-

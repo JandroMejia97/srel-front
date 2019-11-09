@@ -4,6 +4,13 @@
       <a
         mat-bottom
         mat-list-item
+        routerLink="/">
+        <mat-icon>home</mat-icon>
+        Inicio
+      </a>
+      <a
+        mat-bottom
+        mat-list-item
         routerLink="/tipos"
         *ngIf="storageService.isAuthenticated()">
         <mat-icon>category</mat-icon>

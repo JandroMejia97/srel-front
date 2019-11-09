@@ -36,6 +36,7 @@ import { TipoAddComponent } from './tipos/tipo-add/tipo-add.component';
 import { BooleanToStringPipe } from '../pipe/boolean-to-string.pipe';
 import { ActionsComponent } from './actions/actions.component';
 import { AdvancedComponent } from './actions/advanced/advanced.component';
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AdvancedComponent } from './actions/advanced/advanced.component';
     TipoAddComponent,
     CanchasComponent,
     ReservasComponent,
+    AdvancedComponent,
     TiposListComponent,
     CanchaAddComponent,
     ReservaAddComponent,
@@ -52,8 +54,7 @@ import { AdvancedComponent } from './actions/advanced/advanced.component';
     CanchasListComponent,
     CanchaDetailComponent,
     ReservasListComponent,
-    ReservaDetailComponent,
-    AdvancedComponent
+    ReservaDetailComponent
   ],
   imports: [
     FormsModule,
@@ -77,6 +78,7 @@ import { AdvancedComponent } from './actions/advanced/advanced.component';
     MatNativeDateModule,
     SystemRoutingModule
   ],
+  providers: [AuthService],
   entryComponents: [
     TipoAddComponent,
     AdvancedComponent,
