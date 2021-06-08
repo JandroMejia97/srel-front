@@ -21,9 +21,10 @@ export class TipoAddComponent implements OnInit {
   ngOnInit() {
     if (this.data.tipo) {
       this.form = this.formBuilder.group({
-        id: [this.data.tipo.id, Validators.required],
-        tipo_cancha: [this.data.tipo.tipo_cancha, Validators.required],
+        id: ['', Validators.required],
+        tipo_cancha: ['', Validators.required],
       });
+      this.form.patchValue(this.data.tipo);
     } else {
       this.form = this.formBuilder.group({
         tipo_cancha: ['', Validators.required]
